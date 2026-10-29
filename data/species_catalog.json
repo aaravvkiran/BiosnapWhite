@@ -1,0 +1,317 @@
+[
+  {
+    "common_name": "Tree-of-heaven",
+    "scientific_name": "Ailanthus altissima",
+    "aliases": [],
+    "type": "Tree",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Crowds out native plants and is a preferred host for spotted lanternflies.",
+    "safe_action": "Do not simply cut mature trees: roots can produce new shoots. Photograph, map, and ask a trained professional about integrated control and native replacement.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Oriental bittersweet",
+    "scientific_name": "Celastrus orbiculatus",
+    "aliases": [],
+    "type": "Vine",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Climbs and damages trees by shading and weighing down branches.",
+    "safe_action": "Record the location. Join a supervised vine-control effort; avoid pulling large vines out of tree canopies.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Japanese barberry",
+    "scientific_name": "Berberis thunbergii",
+    "aliases": [],
+    "type": "Shrub",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Displaces forest plants and may create conditions favorable to ticks.",
+    "safe_action": "Wear protective clothing and remove small plants with roots where permitted. Coordinate larger removal and restore native shrubs.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Japanese knotweed",
+    "scientific_name": "Reynoutria japonica",
+    "aliases": [
+      "Fallopia japonica",
+      "Polygonum cuspidatum"
+    ],
+    "type": "Plant",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Forms dense stands that displace vegetation and affect riparian habitats.",
+    "safe_action": "Do not dig up and transport roots or stem pieces. Refer established patches for a multi-year management plan.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Purple loosestrife",
+    "scientific_name": "Lythrum salicaria",
+    "aliases": [],
+    "type": "Wetland plant",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Displaces native wetland plants and changes habitat.",
+    "safe_action": "Photograph and map patches. Work with wetland managers; pulling in protected wetlands may require permission.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Invasive common reed",
+    "scientific_name": "Phragmites australis",
+    "aliases": [],
+    "type": "Wetland grass",
+    "evidence_area": "Shrewsbury plan / Lake Quinsigamond",
+    "damage": "Non-native lineages form dense stands that displace native marsh plants.",
+    "safe_action": "Request professional identification of the invasive lineage before removal; coordinate permitted wetland control.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Garlic mustard",
+    "scientific_name": "Alliaria petiolata",
+    "aliases": [],
+    "type": "Plant",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Crowds out native wildflowers and can interfere with forest soil fungi.",
+    "safe_action": "For small patches, obtain landowner permission and pull before seeds develop; bag plants appropriately.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Multiflora rose",
+    "scientific_name": "Rosa multiflora",
+    "aliases": [],
+    "type": "Shrub",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Creates thorny thickets that crowd out native plants.",
+    "safe_action": "Use gloves and tools for small shrubs on permitted sites; seek help for large thickets.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Autumn olive",
+    "scientific_name": "Elaeagnus umbellata",
+    "aliases": [],
+    "type": "Shrub",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Spreads through field edges and crowds out native shrubs.",
+    "safe_action": "Map and remove small seedlings where permitted; coordinate management for mature seed-bearing shrubs.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Morrow's honeysuckle",
+    "scientific_name": "Lonicera morrowii",
+    "aliases": [],
+    "type": "Shrub",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Shades native forest seedlings and understory flowers.",
+    "safe_action": "Join approved shrub removal and native planting projects.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Glossy buckthorn",
+    "scientific_name": "Frangula alnus",
+    "aliases": [
+      "Rhamnus frangula"
+    ],
+    "type": "Shrub/tree",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Spreads through wet woods and crowds out native seedlings.",
+    "safe_action": "Control seedlings and large bushes through a coordinated plan; revisit for new seedlings.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Goutweed / bishop’s weed",
+    "scientific_name": "Aegopodium podagraria",
+    "aliases": [],
+    "type": "Groundcover",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Spreads underground to replace ground-layer plants.",
+    "safe_action": "Avoid transferring contaminated soil and roots. Follow repeated, careful control over multiple seasons.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Yellow iris",
+    "scientific_name": "Iris pseudacorus",
+    "aliases": [],
+    "type": "Wetland plant",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Displaces native shoreline and wetland plants.",
+    "safe_action": "Avoid skin contact with plant sap. Ask wetland managers about permitted removal.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Callery pear",
+    "scientific_name": "Pyrus calleryana",
+    "aliases": [],
+    "type": "Tree",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Escapes from landscaping and can outcompete native trees.",
+    "safe_action": "Avoid planting; work with property owners to replace escaped trees with native species.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Eurasian watermilfoil",
+    "scientific_name": "Myriophyllum spicatum",
+    "aliases": [],
+    "type": "Aquatic plant",
+    "evidence_area": "Lake Quinsigamond",
+    "damage": "Forms dense underwater growth that affects recreation and native plant habitats.",
+    "safe_action": "Clean, drain, and dry boats. Do not fragment or transport plants; refer patches to lake managers.",
+    "numerical_extent": "About 35 acres documented in Lake Quinsigamond in 2019"
+  },
+  {
+    "common_name": "Variable-leaf milfoil",
+    "scientific_name": "Myriophyllum heterophyllum",
+    "aliases": [],
+    "type": "Aquatic plant",
+    "evidence_area": "Lake Quinsigamond",
+    "damage": "Displaces native aquatic vegetation and affects recreation.",
+    "safe_action": "Clean, drain, and dry equipment. Lake managers determine permitted treatments.",
+    "numerical_extent": "About 6 acres documented in Lake Quinsigamond in 2019"
+  },
+  {
+    "common_name": "Fanwort",
+    "scientific_name": "Cabomba caroliniana",
+    "aliases": [],
+    "type": "Aquatic plant",
+    "evidence_area": "Lake Quinsigamond",
+    "damage": "Can grow into dense stands that limit native aquatic plants and recreation.",
+    "safe_action": "Avoid creating plant fragments; inform the lake-management team.",
+    "numerical_extent": "About 5 acres documented in Lake Quinsigamond in 2019"
+  },
+  {
+    "common_name": "Brittle naiad",
+    "scientific_name": "Najas minor",
+    "aliases": [],
+    "type": "Aquatic plant",
+    "evidence_area": "Lake Quinsigamond",
+    "damage": "Can form beds that compete with other aquatic plants.",
+    "safe_action": "Monitor and prevent boat-assisted spread; coordinate management with lake authorities.",
+    "numerical_extent": "About 1 acre documented in Lake Quinsigamond in 2019"
+  },
+  {
+    "common_name": "Water chestnut",
+    "scientific_name": "Trapa natans",
+    "aliases": [],
+    "type": "Aquatic plant",
+    "evidence_area": "Lake Quinsigamond (historical / later management)",
+    "damage": "Can cover water surfaces and restrict habitat and recreation.",
+    "safe_action": "Participate only in supervised hand-pulling projects; collect plants before seeds form.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Curly-leaf pondweed",
+    "scientific_name": "Potamogeton crispus",
+    "aliases": [],
+    "type": "Aquatic plant",
+    "evidence_area": "Lake Quinsigamond (prior-year detection)",
+    "damage": "Can compete with native aquatic plants and cause seasonal surface growth.",
+    "safe_action": "Report suspected patches. Early-season surveys may be needed to confirm them.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Sacred lotus",
+    "scientific_name": "Nelumbo nucifera",
+    "aliases": [],
+    "type": "Aquatic plant",
+    "evidence_area": "Lake Quinsigamond (documented exotic)",
+    "damage": "Can form dense stands in shallow water; extent depends on location.",
+    "safe_action": "Monitor with lake managers; do not remove native look-alikes or undertake unpermitted shoreline work.",
+    "numerical_extent": "About 0.1 acres documented in Lake Quinsigamond in 2019"
+  },
+  {
+    "common_name": "Hydrilla",
+    "scientific_name": "Hydrilla verticillata",
+    "aliases": [],
+    "type": "Aquatic plant",
+    "evidence_area": "Massachusetts / regional threat (Shrewsbury not confirmed)",
+    "damage": "Forms dense underwater vegetation in infested water bodies.",
+    "safe_action": "Prevent transport on boats and equipment; submit suspected occurrences for expert verification.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Spotted lanternfly",
+    "scientific_name": "Lycorma delicatula",
+    "aliases": [],
+    "type": "Insect",
+    "evidence_area": "Shrewsbury confirmed",
+    "damage": "Feeds on plant sap, produces honeydew and can damage vines and trees.",
+    "safe_action": "Photograph it, check vehicles and outdoor equipment, and use the official Massachusetts reporting guidance. Do not apply pesticides without expert guidance.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Emerald ash borer",
+    "scientific_name": "Agrilus planipennis",
+    "aliases": [],
+    "type": "Insect",
+    "evidence_area": "Shrewsbury confirmed (2020 detection)",
+    "damage": "Larvae kill ash trees, creating hazardous dead trees and removal expenses.",
+    "safe_action": "Have ash trees inspected by an arborist; approved treatment can protect selected trees. Avoid moving potentially infested firewood.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Asian longhorned beetle",
+    "scientific_name": "Anoplophora glabripennis",
+    "aliases": [],
+    "type": "Insect",
+    "evidence_area": "Worcester region / Shrewsbury historical",
+    "damage": "Larvae tunnel into hardwood trees and can kill them.",
+    "safe_action": "Photograph suspected beetles and emergence holes. Report to agricultural or forestry authorities; do not transport suspect wood.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Hemlock woolly adelgid",
+    "scientific_name": "Adelges tsugae",
+    "aliases": [],
+    "type": "Insect",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Weakens eastern hemlock trees by feeding on sap.",
+    "safe_action": "Monitor hemlock branches for white woolly patches; refer severe infestations to arborists.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Box tree moth",
+    "scientific_name": "Cydalima perspectalis",
+    "aliases": [],
+    "type": "Insect",
+    "evidence_area": "Massachusetts",
+    "damage": "Caterpillars defoliate and can kill boxwood shrubs.",
+    "safe_action": "Photograph caterpillars and damage. Follow official state reporting and approved control guidance.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Elm zigzag sawfly",
+    "scientific_name": "Aproceros leucopoda",
+    "aliases": [],
+    "type": "Insect",
+    "evidence_area": "Massachusetts",
+    "damage": "Larvae eat elm leaves in zigzag patterns, reducing tree health.",
+    "safe_action": "Record photos of leaf damage and report to forest-health authorities.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Beech leaf disease nematode",
+    "scientific_name": "Litylenchus crenatae mccannii",
+    "aliases": [],
+    "type": "Nematode",
+    "evidence_area": "Massachusetts",
+    "damage": "Damages leaves and can kill American beech trees.",
+    "safe_action": "Photograph leaf striping and consult a professional; do not use unapproved treatments.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Asian jumping worms",
+    "scientific_name": "Amynthas spp.",
+    "aliases": [],
+    "type": "Earthworm group",
+    "evidence_area": "Shrewsbury town plan",
+    "damage": "Changes topsoil structure and can harm forest understory plants.",
+    "safe_action": "Avoid transferring soil, mulch, or worms between locations. Exact species requires expert identification.",
+    "numerical_extent": null
+  },
+  {
+    "common_name": "Asian clam",
+    "scientific_name": "Corbicula fluminea",
+    "aliases": [],
+    "type": "Aquatic animal",
+    "evidence_area": "Lake Quinsigamond",
+    "damage": "Competes with native aquatic organisms and may alter water ecosystems.",
+    "safe_action": "Clean, drain, and dry boats and gear; report suspected new locations.",
+    "numerical_extent": null
+  }
+]
