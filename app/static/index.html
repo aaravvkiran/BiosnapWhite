@@ -6,29 +6,83 @@
   <title>Eco Snap — Invasive Species Identification & Conservation</title>
   <style>
     :root {
-      --bg-header: #070c17;
-      --bg-left: #070c17;
-      --bg-right: #0b1220;
-      --bg-card: #131b2e;
-      --bg-card-subtle: #0d1526;
-      --border-main: #162032;
-      --border-card: #1e293b;
-      --green-accent: #22c55e;
+      /* LIGHT NATURE BIOGLOW THEME (DEFAULT) */
+      --bg-header: #ffffff;
+      --bg-left: #f3f8f5;
+      --bg-right: #ecf5ef;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f5faf6;
+      --bg-card-hover: #ffffff;
+      --border-main: rgba(34, 197, 94, 0.22);
+      --border-card: rgba(34, 197, 94, 0.22);
+      --border-card-hover: rgba(34, 197, 94, 0.55);
+
+      /* BioGlow Green Luminescence Palette */
+      --green-accent: #16a34a;
+      --green-glow: #22c55e;
+      --green-bright: #4ade80;
+      --green-neon: #00ff87;
       --green-btn: #16a34a;
       --green-btn-hover: #15803d;
-      --slate-btn: #202c3f;
-      --slate-btn-hover: #29384f;
+
+      /* BioGlow Shadows & Aura */
+      --bioglow-glow-sm: 0 0 12px rgba(34, 197, 94, 0.35);
+      --bioglow-glow-md: 0 0 22px rgba(34, 197, 94, 0.45);
+      --bioglow-glow-lg: 0 0 35px rgba(34, 197, 94, 0.6);
+      --bioglow-card-shadow: 0 10px 30px rgba(34, 197, 94, 0.09), 0 2px 6px rgba(0, 0, 0, 0.04);
+      --bioglow-card-hover: 0 14px 40px rgba(34, 197, 94, 0.2), 0 0 20px rgba(34, 197, 94, 0.25);
+
+      /* Action Buttons */
+      --slate-btn: #ffffff;
+      --slate-btn-hover: #f0fdf4;
+      --slate-btn-border: rgba(34, 197, 94, 0.35);
+      --slate-btn-text: #15803d;
       --blue-btn: #2563eb;
       --blue-btn-hover: #1d4ed8;
-      --text-white: #ffffff;
-      --text-light: #f1f5f9;
-      --text-muted: #8fa0b5;
-      --text-dim: #5c6c82;
+
+      /* Crisp High Contrast Typography on Light Background */
+      --text-white: #0b1e13;      /* Deep rich dark pine title */
+      --text-light: #183324;      /* High contrast dark readable text */
+      --text-muted: #4e6b5a;      /* Medium contrast secondary text */
+      --text-dim: #718d7c;        /* Subtle tertiary text */
+
+      /* Badges & Form Controls */
       --red-badge: #ef4444;
-      --red-bg: rgba(239, 68, 68, 0.12);
-      --red-border: #ef4444;
-      --green-bg: rgba(34, 197, 94, 0.12);
+      --red-bg: #fef2f2;
+      --red-border: #f87171;
+      --green-bg: #f0fdf4;
       --green-border: #22c55e;
+      --input-bg: #ffffff;
+      --input-border: #cbd5e1;
+      --input-text: #0f172a;
+    }
+
+    body.dark-theme {
+      /* AMBIENT BIOGLOW DARK THEME (TOGGLE OPTION) */
+      --bg-header: #0d1a14;
+      --bg-left: #0a1610;
+      --bg-right: #0e1e16;
+      --bg-card: #12241b;
+      --bg-card-subtle: #0d1c14;
+      --bg-card-hover: #162d22;
+      --border-main: rgba(34, 197, 94, 0.25);
+      --border-card: rgba(34, 197, 94, 0.28);
+      --border-card-hover: rgba(34, 197, 94, 0.6);
+      --slate-btn: #12241b;
+      --slate-btn-hover: #162d22;
+      --slate-btn-border: rgba(34, 197, 94, 0.4);
+      --slate-btn-text: #86efac;
+      --text-white: #ffffff;
+      --text-light: #e2f0e7;
+      --text-muted: #94b9a3;
+      --text-dim: #6a917a;
+      --red-bg: rgba(239, 68, 68, 0.16);
+      --red-border: #ef4444;
+      --green-bg: rgba(34, 197, 94, 0.15);
+      --green-border: #22c55e;
+      --input-bg: #09140e;
+      --input-border: #1e3828;
+      --input-text: #ffffff;
     }
 
     * {
@@ -39,6 +93,7 @@
 
     body {
       background-color: var(--bg-left);
+      background-image: radial-gradient(circle at 15% 15%, rgba(34, 197, 94, 0.08) 0%, transparent 45%), radial-gradient(circle at 85% 85%, rgba(34, 197, 94, 0.06) 0%, transparent 45%);
       color: var(--text-light);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -46,6 +101,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
     /* ============================================================
@@ -56,13 +112,15 @@
       height: 82px;
       min-height: 82px;
       background-color: var(--bg-header);
-      border-bottom: 1px solid var(--border-main);
+      border-bottom: 1.5px solid var(--border-main);
+      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.08);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 44px;
       z-index: 50;
       flex-shrink: 0;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
     }
 
     .brand-section {
@@ -92,10 +150,11 @@
       padding: 8px 18px;
       border-radius: 999px;
       font-size: 15px;
-      font-weight: 600;
-      color: #4ade80;
-      background: rgba(34, 197, 94, 0.08);
-      border: 1px solid rgba(34, 197, 94, 0.35);
+      font-weight: 700;
+      color: var(--green-accent);
+      background: rgba(34, 197, 94, 0.12);
+      border: 1.5px solid rgba(34, 197, 94, 0.35);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.2);
       letter-spacing: 0.2px;
     }
 
@@ -105,13 +164,39 @@
       height: 9px;
       border-radius: 50%;
       background-color: #22c55e;
-      box-shadow: 0 0 10px #22c55e;
+      box-shadow: 0 0 10px #22c55e, 0 0 16px rgba(34, 197, 94, 0.6);
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    /* THEME TOGGLE PILL BUTTON */
+    .theme-toggle-pill {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-card);
+      color: var(--text-light);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      user-select: none;
+      box-shadow: 0 2px 8px rgba(34, 197, 94, 0.12);
+    }
+
+    .theme-toggle-pill:hover {
+      border-color: var(--green-glow);
+      color: var(--green-accent);
+      box-shadow: 0 0 16px rgba(34, 197, 94, 0.35);
+      transform: translateY(-1px);
     }
 
     /* HEADER NAVIGATION TABS */
@@ -129,7 +214,7 @@
       font-family: inherit;
       font-size: 18px;
       font-weight: 600;
-      padding: 0 32px;
+      padding: 0 28px;
       height: 100%;
       cursor: pointer;
       display: inline-flex;
@@ -141,12 +226,13 @@
     }
 
     .tab-item-btn:hover {
-      color: var(--text-white);
-      background-color: rgba(255, 255, 255, 0.04);
+      color: var(--green-accent);
+      background-color: rgba(34, 197, 94, 0.06);
     }
 
     .tab-item-btn.active {
-      color: var(--text-white);
+      color: var(--green-accent);
+      font-weight: 700;
     }
 
     .tab-item-btn.active::after {
@@ -156,7 +242,8 @@
       left: 0;
       right: 0;
       height: 4px;
-      background-color: var(--green-accent);
+      background-color: var(--green-glow);
+      box-shadow: 0 0 12px var(--green-glow), 0 0 20px rgba(34, 197, 94, 0.8);
       border-radius: 2px 2px 0 0;
     }
 
@@ -173,6 +260,7 @@
       justify-content: center;
       margin-left: 4px;
       line-height: 1;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
     }
 
     /* ============================================================
@@ -191,7 +279,7 @@
        ============================================================ */
     .panel-left-dialog {
       background-color: var(--bg-left);
-      border-right: 1px solid var(--border-main);
+      border-right: 1.5px solid var(--border-main);
       height: 100%;
       overflow-y: auto;
       padding: 34px 38px;
@@ -199,30 +287,57 @@
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-start;
+      transition: background-color 0.25s ease;
     }
 
     .identify-dialog-card {
       width: 100%;
       max-width: 100%;
       background-color: var(--bg-card);
-      border: 1px solid var(--border-card);
+      border: 1.5px solid var(--border-card);
       border-radius: 20px;
       padding: 38px 42px;
       text-align: center;
-      box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.75);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: var(--bioglow-card-shadow);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .identify-dialog-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #22c55e, #4ade80, #10b981);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.5);
+      border-radius: 20px 20px 0 0;
     }
 
     .identify-dialog-card.dragover {
-      border-color: var(--green-accent);
-      box-shadow: 0 0 25px rgba(34, 197, 94, 0.25);
+      border-color: var(--green-glow);
+      box-shadow: 0 0 30px rgba(34, 197, 94, 0.35);
     }
 
     .icon-picture-circle {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 24px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 2px solid rgba(34, 197, 94, 0.3);
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.22);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .identify-dialog-card:hover .icon-picture-circle {
+      transform: scale(1.05);
+      box-shadow: 0 0 28px rgba(34, 197, 94, 0.4);
     }
 
     .dialog-title {
@@ -244,9 +359,9 @@
     }
 
     .btn-action-primary {
-      background-color: var(--green-btn);
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
       color: #ffffff;
-      border: none;
+      border: 1px solid #4ade80;
       border-radius: 14px;
       padding: 18px 28px;
       font-family: inherit;
@@ -258,19 +373,21 @@
       align-items: center;
       justify-content: center;
       gap: 14px;
-      transition: background-color 0.15s ease, transform 0.15s ease;
+      transition: all 0.2s ease;
       user-select: none;
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.4), 0 4px 12px rgba(22, 163, 74, 0.25);
     }
 
     .btn-action-primary:hover {
-      background-color: var(--green-btn-hover);
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, #4ade80 0%, #15803d 100%);
+      box-shadow: 0 0 28px rgba(74, 222, 128, 0.65), 0 6px 18px rgba(22, 163, 74, 0.4);
+      transform: translateY(-2px);
     }
 
     .btn-action-identify {
-      background-color: #16a34a;
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
       color: #ffffff;
-      border: 1px solid #22c55e;
+      border: 1px solid #4ade80;
       border-radius: 14px;
       padding: 16px 26px;
       font-family: inherit;
@@ -281,15 +398,15 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      transition: all 0.15s ease;
+      transition: all 0.2s ease;
       flex: 1.25;
-      box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.4), 0 4px 12px rgba(22, 163, 74, 0.25);
     }
 
     .btn-action-identify:hover {
-      background-color: #15803d;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(22, 163, 74, 0.5);
+      background: linear-gradient(135deg, #4ade80 0%, #15803d 100%);
+      box-shadow: 0 0 28px rgba(74, 222, 128, 0.65), 0 6px 18px rgba(22, 163, 74, 0.4);
+      transform: translateY(-2px);
     }
 
     .divider-or {
@@ -316,8 +433,8 @@
 
     .btn-action-secondary {
       background-color: var(--slate-btn);
-      color: var(--text-light);
-      border: 1px solid #2d3c56;
+      color: var(--slate-btn-text);
+      border: 1.5px solid var(--slate-btn-border);
       border-radius: 14px;
       padding: 18px 28px;
       font-family: inherit;
@@ -329,31 +446,35 @@
       align-items: center;
       justify-content: center;
       gap: 14px;
-      transition: background-color 0.15s ease, border-color 0.15s ease;
+      transition: all 0.2s ease;
       user-select: none;
+      box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08);
     }
 
     .btn-action-secondary:hover {
       background-color: var(--slate-btn-hover);
-      border-color: #3e5070;
+      border-color: var(--green-glow);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.3);
+      transform: translateY(-2px);
     }
 
     .btn-action-scan-another {
       background-color: var(--slate-btn);
-      color: var(--text-light);
-      border: 1px solid #2d3c56;
+      color: var(--slate-btn-text);
+      border: 1.5px solid var(--slate-btn-border);
       border-radius: 14px;
       padding: 16px 22px;
       font-family: inherit;
       font-size: 16.5px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      transition: background-color 0.15s ease;
+      transition: all 0.2s ease;
       flex: 1;
+      box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08);
     }
 
     .btn-action-scan-another:hover {
@@ -362,9 +483,9 @@
     }
 
     .btn-action-report {
-      background-color: rgba(239, 68, 68, 0.14);
-      color: #fca5a5;
-      border: 1px solid rgba(239, 68, 68, 0.45);
+      background-color: var(--red-bg);
+      color: #dc2626;
+      border: 1.5px solid var(--red-border);
       border-radius: 14px;
       padding: 16px 20px;
       font-family: inherit;
@@ -375,16 +496,17 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: all 0.15s ease;
+      transition: all 0.2s ease;
       flex: 1.25;
       box-shadow: 0 4px 14px rgba(239, 68, 68, 0.2);
     }
 
     .btn-action-report:hover {
       color: #ffffff;
-      background-color: rgba(239, 68, 68, 0.28);
-      border-color: #ef4444;
-      box-shadow: 0 6px 18px rgba(239, 68, 68, 0.4);
+      background-color: #ef4444;
+      border-color: #dc2626;
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.45);
+      transform: translateY(-1px);
     }
 
     /* CAMERA STREAM VIEWFINDER IN LEFT CARD */
@@ -400,8 +522,9 @@
       object-fit: cover;
       border-radius: 16px;
       background: #000;
-      border: 1px solid var(--border-card);
+      border: 2px solid var(--border-card);
       margin-bottom: 20px;
+      box-shadow: 0 0 16px rgba(34, 197, 94, 0.15);
     }
 
     /* ACTIVE SCAN / PREVIEW BOX IN LEFT PANEL */
@@ -417,12 +540,13 @@
       max-height: 460px;
       border-radius: 16px;
       overflow: hidden;
-      border: 1px solid var(--border-card);
+      border: 2px solid var(--border-card);
       background: #000;
       margin-bottom: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 0 16px rgba(34, 197, 94, 0.15);
     }
 
     .preview-img-box img {
@@ -434,13 +558,14 @@
 
     .ai-status-pill {
       background: var(--bg-card-subtle);
-      border: 1px solid var(--border-card);
+      border: 1.5px solid var(--border-card);
       border-radius: 12px;
       padding: 16px 22px;
       font-size: 16px;
-      color: var(--text-muted);
+      color: var(--text-light);
       margin-bottom: 20px;
       line-height: 1.6;
+      box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08);
     }
 
     /* INVASIVE MATCH CARD (RED) */
@@ -450,7 +575,7 @@
       border-radius: 16px;
       padding: 24px 28px;
       margin-bottom: 20px;
-      box-shadow: 0 8px 24px rgba(239, 68, 68, 0.2);
+      box-shadow: 0 8px 24px rgba(239, 68, 68, 0.18);
       width: 100%;
     }
 
@@ -461,7 +586,7 @@
       border-radius: 16px;
       padding: 24px 28px;
       margin-bottom: 20px;
-      box-shadow: 0 8px 24px rgba(34, 197, 94, 0.2);
+      box-shadow: 0 0 25px rgba(34, 197, 94, 0.25);
       width: 100%;
     }
 
@@ -475,6 +600,7 @@
       padding: 6px 14px;
       border-radius: 8px;
       text-transform: uppercase;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.35);
     }
 
     .tag-safe-green {
@@ -487,12 +613,13 @@
       padding: 6px 14px;
       border-radius: 8px;
       text-transform: uppercase;
+      box-shadow: 0 0 10px rgba(22, 163, 74, 0.35);
     }
 
     .result-species-title {
       font-size: 26px;
       font-weight: 800;
-      color: #ffffff;
+      color: var(--text-white);
       margin-top: 10px;
       margin-bottom: 6px;
       letter-spacing: -0.3px;
@@ -500,8 +627,9 @@
 
     .result-species-scientific {
       font-size: 17px;
-      color: #cbd5e1;
+      color: var(--green-accent);
       font-style: italic;
+      font-weight: 600;
       margin-bottom: 12px;
     }
 
@@ -509,14 +637,15 @@
       width: 100%;
       height: 9px;
       border-radius: 5px;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(239, 68, 68, 0.18);
       overflow: hidden;
       margin: 12px 0 16px;
     }
 
     .progress-fill-red {
       height: 100%;
-      background: #ef4444;
+      background: linear-gradient(90deg, #ef4444, #f87171);
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
       border-radius: 5px;
     }
 
@@ -524,21 +653,22 @@
       width: 100%;
       height: 9px;
       border-radius: 5px;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(34, 197, 94, 0.18);
       overflow: hidden;
       margin: 12px 0 16px;
     }
 
     .progress-fill-green {
       height: 100%;
-      background: #22c55e;
+      background: linear-gradient(90deg, #10b981, #22c55e, #4ade80);
+      box-shadow: 0 0 10px #22c55e;
       border-radius: 5px;
     }
 
     .result-info-box {
       font-size: 16px;
       line-height: 1.65;
-      color: #cbd5e1;
+      color: var(--text-light);
       margin-top: 10px;
     }
 
@@ -555,44 +685,53 @@
     #leftReportFormBox {
       display: none;
       margin-top: 22px;
-      background: #09101e;
-      border: 1px solid #1e293b;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-card);
       border-radius: 16px;
       padding: 26px;
       text-align: left;
       width: 100%;
+      box-shadow: var(--bioglow-card-shadow);
     }
 
     #leftReportFormBox label {
       display: block;
       font-size: 14.5px;
-      font-weight: 600;
-      color: #cbd5e1;
+      font-weight: 700;
+      color: var(--text-light);
       margin-bottom: 8px;
     }
 
     #leftReportFormBox select,
     #leftReportFormBox textarea {
       width: 100%;
-      background: #131b2e;
-      border: 1px solid #1e293b;
-      color: #fff;
+      background: var(--input-bg);
+      border: 1.5px solid var(--input-border);
+      color: var(--input-text);
       border-radius: 10px;
       padding: 13px 16px;
       font-size: 15px;
       margin-bottom: 14px;
       font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #leftReportFormBox select:focus,
+    #leftReportFormBox textarea:focus {
+      border-color: var(--green-glow);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
     }
 
     /* OFFICIAL SUBMISSION RECEIPT CARD (REQ 5) */
     .official-confirmation-card {
-      background: #0a1428;
+      background: var(--bg-card);
       border: 2px solid #3b82f6;
       border-radius: 16px;
       padding: 28px 32px;
       margin-top: 20px;
       text-align: left;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 12px 35px rgba(59, 130, 246, 0.15);
       animation: fadeIn 0.3s ease;
       width: 100%;
     }
@@ -602,7 +741,7 @@
       align-items: center;
       gap: 16px;
       padding-bottom: 16px;
-      border-bottom: 1px solid #1e2d4d;
+      border-bottom: 1px solid var(--border-card);
       margin-bottom: 18px;
     }
 
@@ -610,7 +749,7 @@
       width: 52px;
       height: 52px;
       border-radius: 12px;
-      background: rgba(59, 130, 246, 0.15);
+      background: rgba(59, 130, 246, 0.12);
       border: 1px solid rgba(59, 130, 246, 0.3);
       display: flex;
       align-items: center;
@@ -622,22 +761,22 @@
     .official-agency-title {
       font-size: 17px;
       font-weight: 800;
-      color: #ffffff;
+      color: var(--text-white);
       letter-spacing: -0.2px;
     }
 
     .official-agency-sub {
       font-size: 13.5px;
-      color: #94a3b8;
+      color: var(--text-muted);
       margin-top: 2px;
     }
 
     .confirmation-alert-banner {
       background: rgba(34, 197, 94, 0.12);
-      border: 1px solid rgba(34, 197, 94, 0.3);
+      border: 1.5px solid rgba(34, 197, 94, 0.35);
       border-radius: 10px;
       padding: 12px 18px;
-      color: #4ade80;
+      color: #15803d;
       font-size: 16px;
       font-weight: 700;
       margin-bottom: 18px;
@@ -649,13 +788,13 @@
     .confirmation-lead-text {
       font-size: 16px;
       line-height: 1.68;
-      color: #e2e8f0;
+      color: var(--text-light);
       margin-bottom: 18px;
     }
 
     .ref-id-box {
-      background: #060b14;
-      border: 1px dashed #3b82f6;
+      background: var(--bg-card-subtle);
+      border: 1.5px dashed #3b82f6;
       border-radius: 10px;
       padding: 14px 18px;
       display: flex;
@@ -666,7 +805,7 @@
 
     .ref-id-label {
       font-size: 13px;
-      color: #94a3b8;
+      color: var(--text-muted);
       text-transform: uppercase;
       font-weight: 700;
       letter-spacing: 0.5px;
@@ -676,7 +815,7 @@
     .ref-id-code {
       font-size: 19px;
       font-weight: 800;
-      color: #60a5fa;
+      color: #2563eb;
       font-family: monospace;
       letter-spacing: 0.5px;
     }
@@ -685,7 +824,8 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      background: #0f1c33;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-card);
       border-radius: 10px;
       padding: 16px 20px;
       font-size: 15px;
@@ -699,25 +839,25 @@
     }
 
     .contact-row-label {
-      color: #94a3b8;
+      color: var(--text-muted);
     }
 
     .contact-row-val {
       font-weight: 700;
-      color: #ffffff;
+      color: var(--text-white);
     }
 
     .contact-phone-highlight {
-      color: #60a5fa;
+      color: #2563eb;
       font-weight: 800;
       font-size: 16px;
     }
 
     .official-preservation-note {
       font-size: 14px;
-      color: #f59e0b;
+      color: #92400e;
       line-height: 1.6;
-      background: rgba(245, 158, 11, 0.08);
+      background: rgba(245, 158, 11, 0.1);
       border-left: 3px solid #f59e0b;
       padding: 10px 16px;
       border-radius: 6px;
@@ -752,8 +892,9 @@
       width: 64px;
       height: 64px;
       border-radius: 16px;
-      background: rgba(34, 197, 94, 0.12);
-      border: 1px solid rgba(34, 197, 94, 0.25);
+      background: rgba(34, 197, 94, 0.14);
+      border: 1.5px solid rgba(34, 197, 94, 0.35);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -779,13 +920,14 @@
     }
 
     .mission-box-banner {
-      background: rgba(19, 28, 48, 0.85);
-      border: 1px solid rgba(51, 65, 85, 0.6);
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(34, 197, 94, 0.02) 100%), var(--bg-card);
+      border: 1.5px solid rgba(34, 197, 94, 0.32);
       border-radius: 18px;
       padding: 28px 34px;
       margin-bottom: 38px;
       width: 100%;
       max-width: 100%;
+      box-shadow: var(--bioglow-card-shadow);
     }
 
     .mission-tag-row {
@@ -797,7 +939,7 @@
 
     .mission-tag-title {
       font-size: 21px;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--green-accent);
     }
 
@@ -805,12 +947,12 @@
       margin: 0;
       font-size: 17.5px;
       line-height: 1.65;
-      color: #cbd5e1;
+      color: var(--text-light);
     }
 
     .subheading-h2 {
       font-size: 26px;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-white);
       margin-bottom: 24px;
       letter-spacing: -0.3px;
@@ -829,11 +971,12 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: #131b2e;
-      border: 1px solid #2d3c56;
-      color: #94a3b8;
+      background: var(--bg-card);
+      border: 2px solid var(--green-glow);
+      color: var(--green-accent);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.3);
       font-size: 18px;
-      font-weight: 700;
+      font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -842,7 +985,7 @@
 
     .step-heading {
       font-size: 21px;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-white);
       margin-bottom: 6px;
     }
@@ -857,7 +1000,7 @@
     .team-section-container {
       margin-top: 42px;
       padding-top: 32px;
-      border-top: 1px solid #1e293b;
+      border-top: 1.5px solid var(--border-card);
       width: 100%;
     }
 
@@ -870,23 +1013,23 @@
     }
 
     .team-avatar-card {
-      background: linear-gradient(180deg, #10192d 0%, #0c1424 100%);
-      border: 1px solid #1e2d4d;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-card);
       border-radius: 18px;
       padding: 26px 20px 22px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      box-shadow: var(--bioglow-card-shadow);
       transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
       position: relative;
     }
 
     .team-avatar-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(34, 197, 94, 0.55);
-      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.55), 0 0 22px rgba(34, 197, 94, 0.2);
+      border-color: var(--green-glow);
+      box-shadow: var(--bioglow-card-hover);
     }
 
     .avatar-halo-wrapper {
@@ -902,8 +1045,8 @@
       object-fit: cover;
       object-position: center top;
       border: 3.5px solid #22c55e;
-      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.2), 0 10px 22px rgba(0, 0, 0, 0.5);
-      background: #1e293b;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.25), 0 0 22px rgba(34, 197, 94, 0.45);
+      background: var(--bg-card-subtle);
       display: block;
     }
 
@@ -914,27 +1057,27 @@
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      background: #090e1a;
+      background: #ffffff;
       border: 2px solid #22c55e;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15), 0 0 10px rgba(34, 197, 94, 0.3);
     }
 
     .avatar-member-title {
       font-size: 19px;
-      font-weight: 700;
-      color: #ffffff;
+      font-weight: 800;
+      color: var(--text-white);
       margin-bottom: 4px;
       letter-spacing: -0.2px;
     }
 
     .avatar-role-subtitle {
       font-size: 14.5px;
-      font-weight: 600;
-      color: #22c55e;
+      font-weight: 700;
+      color: var(--green-accent);
       margin-bottom: 12px;
     }
 
@@ -943,19 +1086,19 @@
       align-items: center;
       gap: 5px;
       font-size: 12.5px;
-      font-weight: 600;
+      font-weight: 700;
       padding: 5px 12px;
       border-radius: 9999px;
       background: rgba(34, 197, 94, 0.12);
-      border: 1px solid rgba(34, 197, 94, 0.32);
-      color: #86efac;
+      border: 1.5px solid rgba(34, 197, 94, 0.35);
+      color: #15803d;
       margin-bottom: 14px;
       letter-spacing: 0.2px;
     }
 
     .avatar-bio-desc {
       font-size: 14px;
-      color: #94a3b8;
+      color: var(--text-muted);
       line-height: 1.6;
       margin: 0;
     }
@@ -971,15 +1114,17 @@
 
     .species-item-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-card);
+      border: 1.5px solid var(--border-card);
       border-radius: 16px;
       padding: 24px;
-      transition: transform 0.15s ease, border-color 0.15s ease;
+      box-shadow: var(--bioglow-card-shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .species-item-card:hover {
-      transform: translateY(-2px);
-      border-color: #334155;
+      transform: translateY(-3px);
+      border-color: var(--green-glow);
+      box-shadow: var(--bioglow-card-hover);
     }
 
     .tag-priority-red {
@@ -987,35 +1132,43 @@
       padding: 4px 10px;
       border-radius: 6px;
       background: rgba(239, 68, 68, 0.15);
-      color: #ef4444;
-      font-weight: 700;
+      color: #dc2626;
+      font-weight: 800;
     }
 
     .tag-priority-yellow {
       font-size: 12.5px;
       padding: 4px 10px;
       border-radius: 6px;
-      background: rgba(234, 179, 8, 0.15);
-      color: #eab308;
-      font-weight: 700;
+      background: rgba(234, 179, 8, 0.18);
+      color: #b45309;
+      font-weight: 800;
     }
 
     .cat-pill {
       background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      color: var(--text-muted);
+      border: 1.5px solid var(--border-card);
+      color: var(--text-light);
       border-radius: 999px;
       padding: 10px 22px;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(34, 197, 94, 0.08);
+    }
+
+    .cat-pill:hover {
+      border-color: var(--green-glow);
+      color: var(--green-accent);
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.25);
     }
 
     .cat-pill.active {
-      background: var(--green-btn);
-      border-color: var(--green-btn);
-      color: #fff;
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+      border-color: #22c55e;
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(34, 197, 94, 0.45);
     }
 
     /* ============================================================
@@ -1035,24 +1188,25 @@
       align-items: center;
       gap: 10px;
       background: var(--bg-card);
-      border: 1px solid var(--border-card);
+      border: 1.5px solid var(--border-card);
       border-radius: 12px;
       padding: 12px 18px;
       flex: 1;
       min-width: 260px;
-      transition: border-color 0.15s ease;
+      box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     .neighbor-search-box:focus-within {
-      border-color: var(--green-accent);
-      box-shadow: 0 0 12px rgba(34, 197, 94, 0.2);
+      border-color: var(--green-glow);
+      box-shadow: 0 0 16px rgba(34, 197, 94, 0.3);
     }
 
     .neighbor-search-box input {
       background: transparent;
       border: none;
       outline: none;
-      color: #fff;
+      color: var(--input-text);
       font-size: 15.5px;
       font-family: inherit;
       width: 100%;
@@ -1076,40 +1230,43 @@
 
     .neighbor-chip {
       background: var(--bg-card);
-      border: 1px solid var(--border-card);
-      color: var(--text-muted);
+      border: 1.5px solid var(--border-card);
+      color: var(--text-light);
       border-radius: 999px;
       padding: 8px 18px;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       transition: all 0.15s ease;
       user-select: none;
+      box-shadow: 0 2px 6px rgba(34, 197, 94, 0.08);
     }
 
     .neighbor-chip:hover {
-      color: #fff;
-      border-color: #3b82f6;
+      color: var(--green-accent);
+      border-color: var(--green-glow);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
     }
 
     .neighbor-chip.active {
-      background: #1e293b;
-      border-color: #60a5fa;
-      color: #93c5fd;
-      font-weight: 700;
-      box-shadow: 0 0 10px rgba(59, 130, 246, 0.25);
+      background: #f0fdf4;
+      border-color: var(--green-glow);
+      color: #15803d;
+      font-weight: 800;
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.35);
     }
 
     .neighbor-view-toggles {
       display: flex;
-      background: #09101e;
-      border: 1px solid var(--border-card);
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-card);
       border-radius: 12px;
       padding: 4px;
       gap: 4px;
+      box-shadow: 0 2px 8px rgba(34, 197, 94, 0.08);
     }
 
     .neighbor-view-btn {
@@ -1119,7 +1276,7 @@
       padding: 8px 16px;
       border-radius: 8px;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -1130,15 +1287,15 @@
     }
 
     .neighbor-view-btn.active {
-      background: #1e293b;
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
       color: #ffffff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.4);
     }
 
     .btn-new-sighting {
-      background: var(--green-btn);
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
       color: #fff;
-      border: none;
+      border: 1px solid #4ade80;
       border-radius: 12px;
       padding: 12px 20px;
       font-size: 15px;
@@ -1150,25 +1307,24 @@
       transition: all 0.15s ease;
       font-family: inherit;
       user-select: none;
-      box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
+      box-shadow: var(--green-btn-glow);
     }
 
     .btn-new-sighting:hover {
-      background: var(--green-btn-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(22, 163, 74, 0.5);
+      box-shadow: var(--green-btn-glow-hover);
+      transform: translateY(-2px);
     }
 
     /* QUICK POST SIGHTING DRAWER */
     .neighbor-post-drawer {
       display: none;
-      background: #0c1527;
+      background: var(--bg-card);
       border: 2px solid #22c55e;
       border-radius: 16px;
       padding: 24px 28px;
       margin-bottom: 24px;
       animation: fadeIn 0.25s ease;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 12px 35px rgba(34, 197, 94, 0.2);
     }
 
     .neighbor-post-drawer.open {
@@ -1178,8 +1334,8 @@
     .neighbor-post-drawer label {
       display: block;
       font-size: 14px;
-      font-weight: 600;
-      color: #cbd5e1;
+      font-weight: 700;
+      color: var(--text-light);
       margin-bottom: 6px;
     }
 
@@ -1187,30 +1343,40 @@
     .neighbor-post-drawer select,
     .neighbor-post-drawer textarea {
       width: 100%;
-      background: #131b2e;
-      border: 1px solid #1e293b;
-      color: #fff;
+      background: var(--input-bg);
+      border: 1.5px solid var(--input-border);
+      color: var(--input-text);
       border-radius: 10px;
       padding: 12px 14px;
       font-size: 14.5px;
       margin-bottom: 14px;
       font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .neighbor-post-drawer input:focus,
+    .neighbor-post-drawer select:focus,
+    .neighbor-post-drawer textarea:focus {
+      border-color: var(--green-glow);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
     }
 
     /* SIGHTING CARD STYLES */
     .sighting-card-item {
       background: var(--bg-card);
-      border: 1px solid var(--border-card);
+      border: 1.5px solid var(--border-card);
       border-radius: 16px;
       padding: 24px 28px;
-      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: var(--bioglow-card-shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
       width: 100%;
       margin-bottom: 20px;
     }
 
     .sighting-card-item:hover {
-      border-color: #3b82f6;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      border-color: var(--green-glow);
+      box-shadow: var(--bioglow-card-hover);
     }
 
     .sighting-card-item.invasive-border {
@@ -1249,12 +1415,13 @@
       justify-content: center;
       font-size: 24px;
       flex-shrink: 0;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1.5px solid rgba(34, 197, 94, 0.3);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.2);
     }
 
     .sighting-location-line {
       font-size: 14px;
-      color: #94a3b8;
+      color: var(--text-muted);
       display: flex;
       align-items: center;
       gap: 8px;
@@ -1268,9 +1435,9 @@
       gap: 4px;
       padding: 3px 9px;
       border-radius: 6px;
-      background: rgba(59, 130, 246, 0.12);
-      border: 1px solid rgba(59, 130, 246, 0.25);
-      color: #93c5fd;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #15803d;
       font-size: 12.5px;
       font-weight: 700;
     }
@@ -1278,9 +1445,9 @@
     .sighting-quote-box {
       font-size: 15.5px;
       line-height: 1.65;
-      color: #e2e8f0;
-      background: rgba(10, 16, 30, 0.65);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-light);
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-card);
       border-radius: 12px;
       padding: 14px 18px;
       margin-bottom: 14px;
@@ -1296,21 +1463,24 @@
     }
 
     .sighting-action-rec.danger {
-      background: rgba(239, 68, 68, 0.08);
-      border: 1px solid rgba(239, 68, 68, 0.25);
-      color: #fca5a5;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1.5px solid rgba(239, 68, 68, 0.3);
+      color: #dc2626;
+      font-weight: 700;
     }
 
     .sighting-action-rec.safe {
-      background: rgba(59, 130, 246, 0.08);
-      border: 1px solid rgba(59, 130, 246, 0.25);
-      color: #93c5fd;
+      background: rgba(37, 99, 235, 0.08);
+      border: 1.5px solid rgba(37, 99, 235, 0.3);
+      color: #2563eb;
+      font-weight: 700;
     }
 
     .sighting-action-rec.verified {
-      background: rgba(34, 197, 94, 0.08);
-      border: 1px solid rgba(34, 197, 94, 0.25);
-      color: #86efac;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1.5px solid rgba(34, 197, 94, 0.3);
+      color: #15803d;
+      font-weight: 700;
     }
 
     .sighting-card-actions-row {
@@ -1318,18 +1488,18 @@
       align-items: center;
       gap: 10px;
       padding-top: 14px;
-      border-top: 1px solid #1e293b;
+      border-top: 1px solid var(--border-card);
       flex-wrap: wrap;
     }
 
     .btn-neighbor-action {
-      background: #09101e;
-      border: 1px solid #1e293b;
-      color: #cbd5e1;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-card);
+      color: var(--text-light);
       padding: 9px 16px;
       border-radius: 10px;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -1337,19 +1507,22 @@
       transition: all 0.15s ease;
       font-family: inherit;
       user-select: none;
+      box-shadow: 0 2px 6px rgba(34, 197, 94, 0.08);
     }
 
     .btn-neighbor-action:hover {
-      background: #152238;
-      border-color: #3b82f6;
-      color: #fff;
+      background: var(--slate-btn-hover);
+      border-color: var(--green-glow);
+      color: var(--green-accent);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
     }
 
     .btn-neighbor-action.active-confirm {
-      background: rgba(34, 197, 94, 0.15);
+      background: #f0fdf4;
       border-color: #22c55e;
-      color: #4ade80;
-      font-weight: 700;
+      color: #15803d;
+      font-weight: 800;
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.35);
     }
 
     /* EXPANDABLE COMMENTS DRAWER */
@@ -1357,7 +1530,7 @@
       display: none;
       margin-top: 16px;
       padding-top: 16px;
-      border-top: 1px dashed #1e293b;
+      border-top: 1px dashed var(--border-card);
       animation: fadeIn 0.2s ease;
     }
 
@@ -1366,8 +1539,8 @@
     }
 
     .comment-bubble {
-      background: #09101e;
-      border: 1px solid #1e293b;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-card);
       border-radius: 10px;
       padding: 10px 14px;
       margin-bottom: 8px;
@@ -1377,18 +1550,18 @@
       display: flex;
       justify-content: space-between;
       font-size: 12.5px;
-      color: #94a3b8;
+      color: var(--text-muted);
       margin-bottom: 4px;
     }
 
     .comment-bubble-author {
-      font-weight: 700;
-      color: #e2e8f0;
+      font-weight: 800;
+      color: var(--text-white);
     }
 
     .comment-bubble-text {
       font-size: 14px;
-      color: #cbd5e1;
+      color: var(--text-light);
       line-height: 1.5;
     }
 
@@ -1400,23 +1573,25 @@
 
     .comment-input-row input {
       flex: 1;
-      background: #09101e;
-      border: 1px solid #1e293b;
+      background: var(--input-bg);
+      border: 1.5px solid var(--input-border);
       border-radius: 8px;
       padding: 10px 14px;
-      color: #fff;
+      color: var(--input-text);
       font-size: 13.5px;
       font-family: inherit;
       outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .comment-input-row input:focus {
-      border-color: var(--green-accent);
+      border-color: var(--green-glow);
+      box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
     }
 
     .comment-post-btn {
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: #16a34a;
+      border: 1px solid #22c55e;
       color: #fff;
       padding: 10px 18px;
       border-radius: 8px;
@@ -1425,34 +1600,60 @@
       cursor: pointer;
       font-family: inherit;
       transition: all 0.15s ease;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
     }
 
     .comment-post-btn:hover {
-      background: var(--green-btn);
-      border-color: var(--green-btn);
+      background: #15803d;
+      box-shadow: 0 0 16px rgba(34, 197, 94, 0.5);
     }
 
     /* INTERACTIVE RADAR MAP CONTAINER */
     .neighbor-radar-container {
       display: none;
-      background: #080f1d;
-      border: 1px solid var(--border-card);
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-card);
       border-radius: 18px;
       padding: 24px;
       margin-bottom: 24px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: var(--bioglow-card-shadow);
     }
 
     .radar-canvas-view {
       width: 100%;
       height: 420px;
-      background: radial-gradient(circle at 50% 50%, #0e1e38 0%, #060b14 85%);
+      background: radial-gradient(circle at 50% 50%, #f4fbf6 0%, #e8f7ee 60%, #ddf0e4 100%);
       border-radius: 14px;
-      border: 1px solid #1e2d4d;
+      border: 2px solid rgba(34, 197, 94, 0.35);
       position: relative;
       overflow: hidden;
+      box-shadow: inset 0 0 30px rgba(34, 197, 94, 0.12);
+    }
+
+    .radar-canvas-view::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, rgba(34, 197, 94, 0.18) 0deg, transparent 60deg, transparent 360deg);
+      border-radius: 50%;
+      animation: radarSweep 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes radarSweep {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    body.dark-theme .radar-canvas-view {
+      background: radial-gradient(circle at 50% 50%, #0e2418 0%, #06140d 85%);
+      border-color: rgba(34, 197, 94, 0.35);
+      box-shadow: inset 0 0 40px rgba(34, 197, 94, 0.2);
     }
 
     .radar-pin {
@@ -1499,16 +1700,23 @@
     }
 
     .radar-pin-label {
-      background: rgba(6, 11, 20, 0.92);
-      border: 1px solid #1e2d4d;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1.5px solid rgba(34, 197, 94, 0.4);
       padding: 4px 10px;
       border-radius: 6px;
       font-size: 12px;
-      font-weight: 700;
-      color: #fff;
+      font-weight: 800;
+      color: #0b1e13;
       white-space: nowrap;
       margin-top: 6px;
       pointer-events: none;
+      box-shadow: 0 4px 14px rgba(34, 197, 94, 0.2);
+    }
+
+    body.dark-theme .radar-pin-label {
+      background: rgba(6, 11, 20, 0.92);
+      border-color: #1e2d4d;
+      color: #fff;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
 
@@ -1517,9 +1725,9 @@
       bottom: 20px;
       left: 20px;
       right: 20px;
-      background: rgba(10, 18, 34, 0.95);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(8px);
-      border: 1px solid #3b82f6;
+      border: 2px solid #22c55e;
       border-radius: 14px;
       padding: 16px 20px;
       display: flex;
@@ -1527,6 +1735,12 @@
       align-items: center;
       z-index: 30;
       animation: fadeIn 0.2s ease;
+      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.25);
+    }
+
+    body.dark-theme .radar-active-popup {
+      background: rgba(10, 18, 34, 0.95);
+      border-color: #3b82f6;
       box-shadow: 0 10px 25px rgba(0,0,0,0.6);
     }
 
@@ -1535,14 +1749,14 @@
       position: fixed;
       bottom: 28px;
       right: 28px;
-      background: #0d1a33;
-      border: 1px solid #22c55e;
-      color: #4ade80;
+      background: var(--bg-card);
+      border: 2px solid #22c55e;
+      color: #15803d;
       padding: 14px 22px;
       border-radius: 12px;
       font-size: 15px;
-      font-weight: 700;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.7);
+      font-weight: 800;
+      box-shadow: 0 12px 35px rgba(34, 197, 94, 0.35);
       z-index: 9999;
       opacity: 0;
       transform: translateY(16px);
@@ -1599,21 +1813,29 @@
       </div>
     </div>
 
-    <!-- Header Right: Navigation Tabs -->
-    <nav class="nav-tabs-bar">
-      <button class="tab-item-btn active" id="btnTabAbout" onclick="switchActiveTab('about')">
-        About Us
+    <!-- Header Right: Navigation Tabs and Theme Toggle -->
+    <div style="display:flex; align-items:center; gap:16px; height:100%;">
+      <nav class="nav-tabs-bar">
+        <button class="tab-item-btn active" id="btnTabAbout" onclick="switchActiveTab('about')">
+          About Us
+        </button>
+        <button class="tab-item-btn" id="btnTabInvasive" onclick="switchActiveTab('invasive')">
+          Invasive Species
+        </button>
+        <button class="tab-item-btn" id="btnTabNeighbor" onclick="switchActiveTab('neighbor')">
+          Neighbor <span class="badge-alert-count">2</span>
+        </button>
+        <button class="tab-item-btn" id="btnTabTech" onclick="switchActiveTab('tech')">
+          Tech Updates
+        </button>
+      </nav>
+
+      <!-- Theme Switcher Pill -->
+      <button type="button" id="themeToggleBtn" class="theme-toggle-pill" onclick="toggleBioTheme()" title="Switch between Light BioGlow & Dark BioGlow">
+        <span class="toggle-icon">✨</span>
+        <span class="toggle-text">BioGlow Light</span>
       </button>
-      <button class="tab-item-btn" id="btnTabInvasive" onclick="switchActiveTab('invasive')">
-        Invasive Species
-      </button>
-      <button class="tab-item-btn" id="btnTabNeighbor" onclick="switchActiveTab('neighbor')">
-        Neighbor <span class="badge-alert-count">2</span>
-      </button>
-      <button class="tab-item-btn" id="btnTabTech" onclick="switchActiveTab('tech')">
-        Tech Updates
-      </button>
-    </nav>
+    </div>
   </header>
 
   <!-- ============================================================
@@ -1722,7 +1944,7 @@
 
           <!-- Embedded Report Form Drawer -->
           <div id="leftReportFormBox">
-            <h4 style="font-size:16px; font-weight:800; color:#fff; margin-bottom:12px;">Official Invasive Sighting Report</h4>
+            <h4 style="font-size:16px; font-weight:800; color:var(--text-white); margin-bottom:12px;">Official Invasive Sighting Report</h4>
             <label>Species Choice (Auto-Selected from Match)</label>
             <select id="reportSpeciesSelect">
               <option value="Uncertain">Uncertain / Not Identified</option>
@@ -1735,7 +1957,7 @@
             </select>
             <label>Location & Habitat Notes</label>
             <textarea id="reportNotes" rows="3" placeholder="Where was it found? (e.g. Dean Park trail, host tree species, backyard fence)"></textarea>
-            <label style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:#94a3b8; margin-bottom:14px; cursor:pointer;">
+            <label style="display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--text-muted); margin-bottom:14px; cursor:pointer;">
               <input type="checkbox" id="reportConsent" checked required>
               <span>I consent to saving photo for official state and municipal arborist review.</span>
             </label>
@@ -1834,8 +2056,8 @@
               </svg>
             </div>
             <div>
-              <h2 class="subheading-h2" style="margin:0; font-size:24px; color:#f8fafc;">Meet Our Student Innovators</h2>
-              <p style="margin:3px 0 0 0; font-size:15px; color:#94a3b8;">The student builders behind Eco Snap — fusing AI computer vision with community conservation</p>
+              <h2 class="subheading-h2" style="margin:0; font-size:24px; color:var(--text-white);">Meet Our Student Innovators</h2>
+              <p style="margin:3px 0 0 0; font-size:15px; color:var(--text-muted);">The student builders behind Eco Snap — fusing AI computer vision with community conservation</p>
             </div>
           </div>
 
@@ -1906,7 +2128,7 @@
           <button type="button" class="cat-pill" onclick="applyCategoryFilter('Aquatic', this)">Aquatic</button>
         </div>
 
-        <div id="speciesCatalogTotalLabel" style="font-size:14.5px; color:#8fa0b5; margin-bottom:16px;">Loading species...</div>
+        <div id="speciesCatalogTotalLabel" style="font-size:14.5px; color:var(--text-muted); margin-bottom:16px;">Loading species...</div>
         <div id="speciesCatalogGrid" class="species-grid-3"></div>
       </div>
 
@@ -1916,14 +2138,14 @@
           <div>
             <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
               <h1 class="headline-h1" style="margin-bottom:0;">Neighbor Sightings Feed</h1>
-              <span id="neighborLiveCountBadge" style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#ef4444; padding:6px 14px; border-radius:8px; font-size:13.5px; font-weight:700;">
+              <span id="neighborLiveCountBadge" style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#dc2626; padding:6px 14px; border-radius:8px; font-size:13.5px; font-weight:700;">
                 3 Active Reports
               </span>
             </div>
             <p class="paragraph-lead" style="margin-bottom:0;">Live community observations and municipal inspection updates across Shrewsbury & Worcester.</p>
           </div>
           <button type="button" class="btn-new-sighting" onclick="toggleNewSightingDrawer()">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="18" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="12" y1="5" x2="12" y2="19"/>
               <line x1="5" y1="12" x2="19" y2="12"/>
             </svg>
@@ -1934,7 +2156,7 @@
         <!-- SEARCH AND VIEW TOGGLE CONTROLS -->
         <div class="neighbor-controls-row">
           <div class="neighbor-search-box">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"/>
               <line x1="21" y1="21" x2="16.65" y2="16.65"/>
             </svg>
@@ -1984,8 +2206,8 @@
         <!-- EXPANDABLE "+ POST SIGHTING" DRAWER -->
         <div id="neighborPostDrawer" class="neighbor-post-drawer">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-            <h3 style="font-size:18px; font-weight:800; color:#fff;">Post a Community Sighting</h3>
-            <button type="button" onclick="toggleNewSightingDrawer()" style="background:none; border:none; color:#94a3b8; font-size:20px; cursor:pointer;">✕</button>
+            <h3 style="font-size:18px; font-weight:800; color:var(--text-white);">Post a Community Sighting</h3>
+            <button type="button" onclick="toggleNewSightingDrawer()" style="background:none; border:none; color:var(--text-muted); font-size:20px; cursor:pointer;">✕</button>
           </div>
           <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px;">
             <div>
@@ -2013,29 +2235,29 @@
         <div id="neighborRadarContainer" class="neighbor-radar-container">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
             <div>
-              <div style="font-size:17px; font-weight:800; color:#fff;">Neighborhood Radar & Sighting Hotspots</div>
-              <div style="font-size:13.5px; color:#94a3b8;">Click any pulsing beacon to inspect species and distance.</div>
+              <div style="font-size:17px; font-weight:800; color:var(--text-white);">Neighborhood Radar & Sighting Hotspots</div>
+              <div style="font-size:13.5px; color:var(--text-muted);">Click any pulsing beacon to inspect species and distance.</div>
             </div>
-            <div style="font-size:13px; color:#4ade80; display:flex; align-items:center; gap:8px;">
-              <span style="display:inline-block; width:9px; height:9px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e;"></span>
+            <div style="font-size:13px; color:var(--green-accent); font-weight:700; display:flex; align-items:center; gap:8px;">
+              <span style="display:inline-block; width:9px; height:9px; border-radius:50%; background:#22c55e; box-shadow:0 0 10px #22c55e;"></span>
               Live Georeferenced Grid (Shrewsbury & Lake Quinsigamond)
             </div>
           </div>
 
           <div class="radar-canvas-view" id="radarCanvas">
             <!-- Simulated Stylized Topographic / Lake overlays -->
-            <svg width="100%" height="100%" style="position:absolute; inset:0; opacity:0.25; pointer-events:none;">
+            <svg width="100%" height="100%" style="position:absolute; inset:0; opacity:0.35; pointer-events:none;">
               <!-- Lake Quinsigamond polygon -->
               <path d="M 120 40 Q 140 180 130 380 Q 180 340 160 160 Z" fill="#3b82f6"/>
               <!-- Route 9 / Boston Turnpike -->
-              <line x1="0" y1="180" x2="100%" y2="240" stroke="#60a5fa" stroke-width="3" stroke-dasharray="8 6"/>
+              <line x1="0" y1="180" x2="100%" y2="240" stroke="#3b82f6" stroke-width="3" stroke-dasharray="8 6"/>
               <!-- Route 140 -->
-              <line x1="280" y1="0" x2="310" y2="100%" stroke="#475569" stroke-width="2"/>
+              <line x1="280" y1="0" x2="310" y2="100%" stroke="#16a34a" stroke-width="2"/>
               <!-- Dean Park Boundary -->
-              <circle cx="70%" cy="28%" r="52" fill="rgba(34, 197, 94, 0.15)" stroke="#22c55e" stroke-dasharray="4 4"/>
-              <text x="65%" y="30%" fill="#4ade80" font-size="12" font-weight="700">Dean Park</text>
-              <text x="70" y="260" fill="#60a5fa" font-size="12" font-weight="700">Lake Quinsigamond</text>
-              <text x="320" y="220" fill="#94a3b8" font-size="12" font-weight="600">Route 9 (Boston Tpke)</text>
+              <circle cx="70%" cy="28%" r="52" fill="rgba(34, 197, 94, 0.18)" stroke="#22c55e" stroke-dasharray="4 4"/>
+              <text x="65%" y="30%" fill="#15803d" font-size="12" font-weight="800">Dean Park</text>
+              <text x="70" y="260" fill="#2563eb" font-size="12" font-weight="800">Lake Quinsigamond</text>
+              <text x="320" y="220" fill="#475569" font-size="12" font-weight="700">Route 9 (Boston Tpke)</text>
             </svg>
 
             <!-- Dynamic Pin Beacons injected by JS -->
@@ -2060,28 +2282,34 @@
         </p>
 
         <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(380px, 1fr)); gap:22px; margin-top:24px; width:100%;">
-          <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:16px; padding:26px 28px;">
-            <div style="font-weight:700; color:#4ade80; font-size:19px; margin-bottom:10px;">BioCLIP 2 TreeOfLife Classifier</div>
-            <p style="font-size:15.5px; color:#94a3b8; line-height:1.65; margin-bottom:14px;">
+          <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:26px 28px; box-shadow:var(--bioglow-card-shadow);">
+            <div style="font-weight:800; color:var(--green-accent); font-size:19.5px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+              <span style="color:#22c55e;">✦</span> BioCLIP 2 TreeOfLife Classifier
+            </div>
+            <p style="font-size:15.5px; color:var(--text-muted); line-height:1.65; margin-bottom:14px;">
               Open-world taxonomic classification covering over 450,000 biological taxa. First-stage identification yields top 5 species and genus matches.
             </p>
-            <div style="font-size:13.5px; color:#64748b;">Framework: PyTorch 2.14 • OpenCLIP • HuggingFace Hub</div>
+            <div style="font-size:13.5px; color:var(--text-dim); font-weight:600;">Framework: PyTorch 2.14 • OpenCLIP • HuggingFace Hub</div>
           </div>
 
-          <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:16px; padding:26px 28px;">
-            <div style="font-weight:700; color:#4ade80; font-size:19px; margin-bottom:10px;">Closed-Set Lookalike Filter</div>
-            <p style="font-size:15.5px; color:#94a3b8; line-height:1.65; margin-bottom:14px;">
+          <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:26px 28px; box-shadow:var(--bioglow-card-shadow);">
+            <div style="font-weight:800; color:var(--green-accent); font-size:19.5px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+              <span style="color:#22c55e;">✦</span> Closed-Set Lookalike Filter
+            </div>
+            <p style="font-size:15.5px; color:var(--text-muted); line-height:1.65; margin-bottom:14px;">
               Specialized second-pass CustomLabelsClassifier disambiguates regulated Cerambycidae (Asian longhorned beetle) from native lookalikes (Whitespotted & Northeastern sawyers).
             </p>
-            <div style="font-size:13.5px; color:#64748b;">CustomLabelsClassifier with safety warnings</div>
+            <div style="font-size:13.5px; color:var(--text-dim); font-weight:600;">CustomLabelsClassifier with safety warnings</div>
           </div>
 
-          <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:16px; padding:26px 28px;">
-            <div style="font-weight:700; color:#4ade80; font-size:19px; margin-bottom:10px;">Local SQLite Data & Privacy</div>
-            <p style="font-size:15.5px; color:#94a3b8; line-height:1.65; margin-bottom:14px;">
+          <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:26px 28px; box-shadow:var(--bioglow-card-shadow);">
+            <div style="font-weight:800; color:var(--green-accent); font-size:19.5px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+              <span style="color:#22c55e;">✦</span> Local SQLite Data & Privacy
+            </div>
+            <p style="font-size:15.5px; color:var(--text-muted); line-height:1.65; margin-bottom:14px;">
               All images submitted with user consent are stripped of GPS/EXIF metadata via PIL and saved locally in <code>storage/</code> with SHA-256 UUID identifiers.
             </p>
-            <div style="font-size:13.5px; color:#64748b;">Zero third-party telemetry • Local processing</div>
+            <div style="font-size:13.5px; color:var(--text-dim); font-weight:600;">Zero third-party telemetry • Local processing</div>
           </div>
         </div>
       </div>
@@ -2096,6 +2324,23 @@
     let catalogSpecies = [];
     let currentCategory = 'all';
     let lastIdentifiedMatch = null;
+
+    // 0. Theme System
+    function toggleBioTheme() {
+      const isDark = document.body.classList.toggle('dark-theme');
+      localStorage.setItem('ecosnap-theme', isDark ? 'dark' : 'light');
+      updateThemeButtonText();
+    }
+
+    function updateThemeButtonText() {
+      const isDark = document.body.classList.contains('dark-theme');
+      const btn = document.getElementById('themeToggleBtn');
+      if (btn) {
+        btn.innerHTML = isDark
+          ? '<span class="toggle-icon">🌙</span><span class="toggle-text">Deep BioGlow</span>'
+          : '<span class="toggle-icon">✨</span><span class="toggle-text">BioGlow Light</span>';
+      }
+    }
 
     function sanitize(str) {
       return String(str ?? '').replace(/[&<>"']/g, c => ({
@@ -2551,15 +2796,15 @@
         return `
           <div class="species-item-card">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-              <span style="font-weight:700; color:#fff; font-size:18px;">${sanitize(s.common_name)}</span>
+              <span style="font-weight:700; color:var(--text-white); font-size:18px;">${sanitize(s.common_name)}</span>
               <span class="${isPriority ? 'tag-priority-red' : 'tag-priority-yellow'}">
                 ${isPriority ? 'High Urgency' : 'Monitored'}
               </span>
             </div>
-            <div style="font-size:15px; color:#8fa0b5; font-style:italic; margin-bottom:10px;">${sanitize(s.scientific_name)}</div>
-            <p style="font-size:14.5px; color:#cbd5e1; line-height:1.6; margin-bottom:12px;">${sanitize(s.damage)}</p>
-            <div style="font-size:13.5px; color:#94a3b8;">
-              <b style="color:#cbd5e1;">Safe action:</b> ${sanitize(s.safe_action)}
+            <div style="font-size:15px; color:var(--green-accent); font-weight:700; font-style:italic; margin-bottom:10px;">${sanitize(s.scientific_name)}</div>
+            <p style="font-size:14.5px; color:var(--text-muted); line-height:1.6; margin-bottom:12px;">${sanitize(s.damage)}</p>
+            <div style="font-size:13.5px; color:var(--text-dim);">
+              <b style="color:var(--text-white);">Safe action:</b> ${sanitize(s.safe_action)}
             </div>
           </div>
         `;
@@ -2747,8 +2992,8 @@
         container.innerHTML = `
           <div style="background:var(--bg-card); border:1px dashed var(--border-card); border-radius:16px; padding:38px 24px; text-align:center;">
             <div style="font-size:32px; margin-bottom:10px;">🔍</div>
-            <div style="font-size:18px; font-weight:700; color:#fff; margin-bottom:6px;">No neighbor sightings found</div>
-            <div style="font-size:14.5px; color:#8fa0b5;">Try broadening your search term or selecting "All Sightings".</div>
+            <div style="font-size:18px; font-weight:700; color:var(--text-white); margin-bottom:6px;">No neighbor sightings found</div>
+            <div style="font-size:14.5px; color:var(--text-muted);">Try broadening your search term or selecting "All Sightings".</div>
           </div>
         `;
         return;
@@ -2767,13 +3012,13 @@
                 </div>
                 <div>
                   <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-                    <span style="font-weight:800; color:#fff; font-size:19px;">${sanitize(s.species)}</span>
-                    <span style="font-size:14px; color:#94a3b8; font-style:italic;">${sanitize(s.scientific)}</span>
+                    <span style="font-weight:800; color:var(--text-white); font-size:19px;">${sanitize(s.species)}</span>
+                    <span style="font-size:14px; color:var(--green-accent); font-weight:700; font-style:italic;">${sanitize(s.scientific)}</span>
                   </div>
                   <div class="sighting-location-line">
-                    <span>${sanitize(s.location)}</span>
+                    <span style="font-weight:600;">${sanitize(s.location)}</span>
                     <span>•</span>
-                    <span style="color:#cbd5e1;">${sanitize(s.time)}</span>
+                    <span style="color:var(--text-muted);">${sanitize(s.time)}</span>
                     <span class="distance-tag">📍 ${sanitize(s.distance)}</span>
                   </div>
                 </div>
@@ -2794,12 +3039,12 @@
             <div class="sighting-card-actions-row">
               <button type="button" class="btn-neighbor-action ${s.userConfirmed ? 'active-confirm' : ''}" onclick="confirmNeighborSighting('${s.id}')">
                 <span>${s.userConfirmed ? '✓ Confirmed!' : '👍 I Saw This Too'}</span>
-                <span style="background:rgba(255,255,255,0.12); padding:2px 8px; border-radius:999px; font-size:12px;">${s.confirms}</span>
+                <span style="background:rgba(34,197,94,0.14); color:var(--green-accent); font-weight:800; padding:2px 8px; border-radius:999px; font-size:12px;">${s.confirms}</span>
               </button>
 
               <button type="button" class="btn-neighbor-action" onclick="toggleNeighborComments('${s.id}')">
                 <span>💬 Comments</span>
-                <span style="background:rgba(255,255,255,0.12); padding:2px 8px; border-radius:999px; font-size:12px;">${commentsCount}</span>
+                <span style="background:rgba(34,197,94,0.14); color:var(--green-accent); font-weight:800; padding:2px 8px; border-radius:999px; font-size:12px;">${commentsCount}</span>
               </button>
 
               <button type="button" class="btn-neighbor-action" onclick="locateSightingOnMap('${s.id}')">
@@ -3002,15 +3247,15 @@
         <div style="display:flex; align-items:center; gap:12px;">
           <div style="font-size:26px;">${s.icon}</div>
           <div>
-            <div style="font-size:16px; font-weight:800; color:#fff;">${sanitize(s.species)}</div>
-            <div style="font-size:13px; color:#94a3b8;">${sanitize(s.location)} • <span style="color:#60a5fa; font-weight:700;">${sanitize(s.distance)}</span></div>
+            <div style="font-size:16px; font-weight:800; color:var(--text-white);">${sanitize(s.species)}</div>
+            <div style="font-size:13px; color:var(--text-muted);">${sanitize(s.location)} • <span style="color:var(--green-accent); font-weight:800;">${sanitize(s.distance)}</span></div>
           </div>
         </div>
         <div style="display:flex; gap:10px;">
           <button type="button" class="btn-neighbor-action active-confirm" onclick="switchNeighborView('feed'); setTimeout(()=>{ const el=document.getElementById('card-${s.id}'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 100);">
             View Post in Feed →
           </button>
-          <button type="button" style="background:none; border:none; color:#94a3b8; font-size:18px; cursor:pointer;" onclick="document.getElementById('radarActivePopup').style.display='none'">✕</button>
+          <button type="button" style="background:none; border:none; color:var(--text-muted); font-size:18px; cursor:pointer;" onclick="document.getElementById('radarActivePopup').style.display='none'">✕</button>
         </div>
       `;
       popup.style.display = 'flex';
@@ -3028,8 +3273,17 @@
       }, 2600);
     }
 
-    // Drag and drop & paste setup
+    // Drag and drop & paste setup & theme initialization
     document.addEventListener('DOMContentLoaded', () => {
+      // Initialize BioGlow theme from storage
+      const savedTheme = localStorage.getItem('ecosnap-theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+      } else {
+        document.body.classList.remove('dark-theme');
+      }
+      updateThemeButtonText();
+
       loadCatalogFromAPI();
       renderNeighborFeed();
       renderRadarPins();

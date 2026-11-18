@@ -1,27 +1,84 @@
 /* ===================================================
-   Eco Snap Dark Theme & Two-Panel Split Layout Styles
+   Eco Snap BioGlow Light & Ambient Deep Theme Styles
    =================================================== */
 
 :root {
-  --bg-header: #070c17;
-  --bg-left: #070c17;
-  --bg-right: #0b1220;
-  --bg-card: #131b2e;
-  --bg-card-subtle: #0d1526;
-  --bg-card-hover: #17223b;
-  --border-main: #162032;
-  --border-card: #1e293b;
-  --green-accent: #22c55e;
+  /* LIGHT NATURE BIOGLOW THEME (DEFAULT) */
+  --bg-header: #ffffff;
+  --bg-left: #f3f8f5;
+  --bg-right: #ecf5ef;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f5faf6;
+  --bg-card-hover: #ffffff;
+  --border-main: rgba(34, 197, 94, 0.22);
+  --border-card: rgba(34, 197, 94, 0.22);
+  --border-card-hover: rgba(34, 197, 94, 0.55);
+
+  /* BioGlow Green Luminescence Palette */
+  --green-accent: #16a34a;
+  --green-glow: #22c55e;
+  --green-bright: #4ade80;
+  --green-neon: #00ff87;
   --green-btn: #16a34a;
   --green-btn-hover: #15803d;
-  --slate-btn: #202c3f;
-  --slate-btn-hover: #29384f;
-  --text-white: #ffffff;
-  --text-light: #f1f5f9;
-  --text-muted: #8fa0b5;
-  --text-dim: #5c6c82;
+
+  /* BioGlow Shadows & Aura */
+  --bioglow-glow-sm: 0 0 12px rgba(34, 197, 94, 0.35);
+  --bioglow-glow-md: 0 0 22px rgba(34, 197, 94, 0.45);
+  --bioglow-glow-lg: 0 0 35px rgba(34, 197, 94, 0.6);
+  --bioglow-card-shadow: 0 10px 30px rgba(34, 197, 94, 0.09), 0 2px 6px rgba(0, 0, 0, 0.04);
+  --bioglow-card-hover: 0 14px 40px rgba(34, 197, 94, 0.2), 0 0 20px rgba(34, 197, 94, 0.25);
+
+  /* Buttons */
+  --slate-btn: #ffffff;
+  --slate-btn-hover: #f0fdf4;
+  --slate-btn-border: rgba(34, 197, 94, 0.35);
+  --slate-btn-text: #15803d;
+  --blue-btn: #2563eb;
+  --blue-btn-hover: #1d4ed8;
+
+  /* High Contrast Typography */
+  --text-white: #0b1e13;
+  --text-light: #183324;
+  --text-muted: #4e6b5a;
+  --text-dim: #718d7c;
+
+  /* Badges & Inputs */
   --red-badge: #ef4444;
-  --blue-ring: #3b82f6;
+  --red-bg: #fef2f2;
+  --red-border: #f87171;
+  --green-bg: #f0fdf4;
+  --green-border: #22c55e;
+  --input-bg: #ffffff;
+  --input-border: #cbd5e1;
+  --input-text: #0f172a;
+}
+
+body.dark-theme {
+  --bg-header: #0d1a14;
+  --bg-left: #0a1610;
+  --bg-right: #0e1e16;
+  --bg-card: #12241b;
+  --bg-card-subtle: #0d1c14;
+  --bg-card-hover: #162d22;
+  --border-main: rgba(34, 197, 94, 0.25);
+  --border-card: rgba(34, 197, 94, 0.28);
+  --border-card-hover: rgba(34, 197, 94, 0.6);
+  --slate-btn: #12241b;
+  --slate-btn-hover: #162d22;
+  --slate-btn-border: rgba(34, 197, 94, 0.4);
+  --slate-btn-text: #86efac;
+  --text-white: #ffffff;
+  --text-light: #e2f0e7;
+  --text-muted: #94b9a3;
+  --text-dim: #6a917a;
+  --red-bg: rgba(239, 68, 68, 0.16);
+  --red-border: #ef4444;
+  --green-bg: rgba(34, 197, 94, 0.15);
+  --green-border: #22c55e;
+  --input-bg: #09140e;
+  --input-border: #1e3828;
+  --input-text: #ffffff;
 }
 
 *, *::before, *::after {
@@ -34,10 +91,12 @@ html, body {
   width: 100%;
   height: 100%;
   background-color: var(--bg-left);
+  background-image: radial-gradient(circle at 15% 15%, rgba(34, 197, 94, 0.08) 0%, transparent 45%), radial-gradient(circle at 85% 85%, rgba(34, 197, 94, 0.06) 0%, transparent 45%);
   color: var(--text-light);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* APP SHELL */
