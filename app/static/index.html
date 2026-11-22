@@ -275,21 +275,63 @@
     }
 
     /* ============================================================
-       LEFT PANEL: IDENTIFY SPECIES DIALOG & SCANNER
+       LEFT PANEL: IDENTIFY SPECIES DIALOG & SCANNER (SCROLLABLE)
        ============================================================ */
     .panel-left-dialog {
       background-color: var(--bg-left);
       border-right: 1.5px solid var(--border-main);
       height: 100%;
-      overflow-y: scroll; /* Scrollbar always visible on the left pane */
-      padding: 34px 38px 80px;
+      min-height: 0; /* Ensures container establishes independent scrollport in CSS grid */
+      max-height: 100%;
+      overflow-y: scroll; /* Smooth vertical scrollbar always active on left pane */
+      overflow-x: hidden;
+      padding: 34px 38px 120px;
       display: flex;
       flex-direction: column;
+      gap: 22px;
       align-items: stretch;
       justify-content: flex-start;
       transition: background-color 0.25s ease;
       scrollbar-width: thin;
       scrollbar-color: var(--green-accent) rgba(34, 197, 94, 0.08);
+      overscroll-behavior-y: contain;
+    }
+
+    .left-section-addon-card {
+      width: 100%;
+      background-color: var(--bg-card);
+      border: 1.5px solid var(--border-card);
+      border-radius: 18px;
+      padding: 24px 28px;
+      box-shadow: var(--bioglow-card-shadow);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .left-section-addon-card:hover {
+      border-color: var(--border-card-hover);
+      box-shadow: var(--bioglow-card-hover);
+    }
+
+    .btn-sample-specimen {
+      background: var(--bg-card-subtle);
+      border: 1.5px solid var(--border-card);
+      border-radius: 12px;
+      padding: 12px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .btn-sample-specimen:hover {
+      border-color: var(--green-glow);
+      background: var(--green-bg);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(34, 197, 94, 0.2);
     }
 
     /* CUSTOM BIOGLOW SCROLLBARS FOR LEFT & RIGHT PANELS */
@@ -331,6 +373,7 @@
       transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
       position: relative;
       overflow: hidden;
+      flex-shrink: 0; /* Prevents card from shrinking in flex container */
     }
 
     .identify-dialog-card::before {
@@ -2007,6 +2050,101 @@
         </div>
 
       </div>
+
+      <!-- 4. QUICK SAMPLE SPECIMENS CARD -->
+      <div class="left-section-addon-card">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:22px;">🧪</span>
+            <span style="font-weight:800; font-size:17px; color:var(--text-white);">Quick Demo Specimens</span>
+          </div>
+          <span style="font-size:12px; font-weight:700; color:var(--green-accent); background:rgba(34,197,94,0.1); padding:3px 10px; border-radius:999px;">1-Click Test</span>
+        </div>
+        <p style="font-size:14px; color:var(--text-muted); line-height:1.5; margin-bottom:14px;">
+          Don't have a photo ready? Click any specimen below to load a test specimen and run the BioCLIP identification workflow:
+        </p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <button type="button" class="btn-sample-specimen" onclick="loadSampleSpecimen('Spotted Lanternfly')">
+            <span style="font-size:24px;">🐞</span>
+            <div style="text-align:left;">
+              <div style="font-weight:700; font-size:14px; color:var(--text-white);">Spotted Lanternfly</div>
+              <div style="font-size:11.5px; color:#ef4444; font-weight:700;">Invasive • High Urgency</div>
+            </div>
+          </button>
+          <button type="button" class="btn-sample-specimen" onclick="loadSampleSpecimen('Asian Longhorned Beetle')">
+            <span style="font-size:24px;">🪲</span>
+            <div style="text-align:left;">
+              <div style="font-weight:700; font-size:14px; color:var(--text-white);">Asian Longhorned Beetle</div>
+              <div style="font-size:11.5px; color:#ef4444; font-weight:700;">Regulated Tree Pest</div>
+            </div>
+          </button>
+          <button type="button" class="btn-sample-specimen" onclick="loadSampleSpecimen('Whitespotted Sawyer')">
+            <span style="font-size:24px;">🌲</span>
+            <div style="text-align:left;">
+              <div style="font-weight:700; font-size:14px; color:var(--text-white);">Whitespotted Sawyer</div>
+              <div style="font-size:11.5px; color:#22c55e; font-weight:700;">Native ALB Lookalike</div>
+            </div>
+          </button>
+          <button type="button" class="btn-sample-specimen" onclick="loadSampleSpecimen('Garlic Mustard')">
+            <span style="font-size:24px;">🌿</span>
+            <div style="text-align:left;">
+              <div style="font-weight:700; font-size:14px; color:var(--text-white);">Garlic Mustard</div>
+              <div style="font-size:11.5px; color:#ef4444; font-weight:700;">Invasive Forest Weed</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- 5. SCANNING BEST PRACTICES CARD -->
+      <div class="left-section-addon-card">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+          <span style="font-size:22px;">📸</span>
+          <span style="font-weight:800; font-size:17px; color:var(--text-white);">Scanning Best Practices &amp; Tips</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px; font-size:14px; color:var(--text-muted); line-height:1.55;">
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <span style="color:var(--green-accent); font-weight:800; font-size:16px;">01</span>
+            <div><b>Close-up Framing:</b> Fill at least 40% of the camera frame with the target insect, leaf, or bark marking.</div>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <span style="color:var(--green-accent); font-weight:800; font-size:16px;">02</span>
+            <div><b>Check Key Markings:</b> Focus on wing spots, white antennae bands, or leaf vein patterns for lookalike disambiguation.</div>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <span style="color:var(--green-accent); font-weight:800; font-size:16px;">03</span>
+            <div><b>Natural Daylight:</b> Avoid harsh camera flash glare; steady, diffuse daylight produces highest AI confidence scores.</div>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <span style="color:var(--green-accent); font-weight:800; font-size:16px;">04</span>
+            <div><b>Multiple Angles:</b> For beetles and caterpillars, capture top-down dorsal and profile views when safe.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. RECENT SCANS SESSION LOG -->
+      <div class="left-section-addon-card">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:22px;">📋</span>
+            <span style="font-weight:800; font-size:17px; color:var(--text-white);">This Session's Scans</span>
+          </div>
+          <span id="sessionScanCountBadge" style="font-size:12.5px; font-weight:700; color:var(--text-muted); background:var(--bg-card-subtle); padding:3px 12px; border-radius:999px; border:1px solid var(--border-card);">0 Scans</span>
+        </div>
+        <div id="sessionScanList" style="font-size:14px; color:var(--text-dim); line-height:1.6;">
+          Scans you analyze during this session will appear here so you can easily review previous matches or re-open official reports.
+        </div>
+      </div>
+
+      <!-- 7. MASSACHUSETTS BIOSECURITY NOTICE -->
+      <div class="left-section-addon-card" style="border-left:4px solid #f59e0b;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+          <span style="font-size:20px;">⚠️</span>
+          <span style="font-weight:800; font-size:16px; color:var(--text-white);">Central Massachusetts Biosecurity Advisory</span>
+        </div>
+        <p style="font-size:13.5px; color:var(--text-muted); line-height:1.6; margin-bottom:0;">
+          Worcester County (Shrewsbury, Worcester, Holden, Boylston, West Boylston) is within the USDA/MDAR Asian Longhorned Beetle quarantine zone. <b>Do not move untreated firewood, logs, nursery stock, or pruning brush</b> across town lines. Report sightings immediately!
+        </p>
+      </div>
     </section>
 
     <!-- ========================================================
@@ -2834,6 +2972,110 @@
       }
     }
 
+    // 3b. Session Scans History & Demo Samples
+    const sessionScans = [];
+
+    function addSessionScanLog(speciesName, scientificName, isInvasive, score) {
+      sessionScans.unshift({
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        species: speciesName || 'Specimen',
+        scientific: scientificName || '',
+        isInvasive: isInvasive,
+        score: score || 95
+      });
+      renderSessionScanList();
+    }
+
+    function renderSessionScanList() {
+      const badge = document.getElementById('sessionScanCountBadge');
+      const list = document.getElementById('sessionScanList');
+      if (!list) return;
+
+      if (badge) badge.textContent = `${sessionScans.length} Scan${sessionScans.length === 1 ? '' : 's'}`;
+
+      if (sessionScans.length === 0) {
+        list.innerHTML = 'Scans you analyze during this session will appear here so you can easily review previous matches or re-open official reports.';
+        return;
+      }
+
+      list.innerHTML = `
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          ${sessionScans.map((s, idx) => `
+            <div style="background:var(--bg-card-subtle); border:1.5px solid var(--border-card); border-radius:12px; padding:12px 16px; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-weight:800; color:var(--text-white); font-size:14.5px;">${sanitize(s.species)}</div>
+                <div style="font-size:12.5px; color:var(--text-dim); margin-top:2px;">
+                  ${s.time} • ${s.scientific ? `<em>${sanitize(s.scientific)}</em> • ` : ''}${s.score}% Match
+                </div>
+              </div>
+              <span class="${s.isInvasive ? 'tag-priority-red' : 'tag-safe-green'}" style="font-size:11.5px; padding:4px 10px;">
+                ${s.isInvasive ? 'Invasive' : 'Native / Safe'}
+              </span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function loadSampleSpecimen(speciesName) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 640;
+      canvas.height = 480;
+      const ctx = canvas.getContext('2d');
+
+      const grad = ctx.createLinearGradient(0, 0, 640, 480);
+      if (speciesName.includes('Lanternfly')) {
+        grad.addColorStop(0, '#450a0a'); grad.addColorStop(1, '#1c1917');
+      } else if (speciesName.includes('Longhorned')) {
+        grad.addColorStop(0, '#0f172a'); grad.addColorStop(1, '#020617');
+      } else if (speciesName.includes('Sawyer')) {
+        grad.addColorStop(0, '#1c1917'); grad.addColorStop(1, '#292524');
+      } else {
+        grad.addColorStop(0, '#064e3b'); grad.addColorStop(1, '#022c22');
+      }
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 640, 480);
+
+      // Nature textured nodes
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+      for (let i = 0; i < 30; i++) {
+        ctx.beginPath();
+        ctx.arc(Math.random() * 640, Math.random() * 480, Math.random() * 50 + 10, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Specimen title banner
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.65)';
+      ctx.fillRect(40, 350, 560, 95);
+      ctx.strokeStyle = '#22c55e';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(40, 350, 560, 95);
+
+      // Emoji depiction
+      ctx.font = '80px sans-serif';
+      ctx.textAlign = 'center';
+      const icon = speciesName.includes('Lanternfly') ? '🐞' : (speciesName.includes('Longhorned') ? '🪲' : (speciesName.includes('Sawyer') ? '🌲' : '🌿'));
+      ctx.fillText(icon, 320, 230);
+
+      // Name
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 24px -apple-system, sans-serif';
+      ctx.fillText(speciesName, 320, 390);
+
+      ctx.fillStyle = '#4ade80';
+      ctx.font = '15px -apple-system, sans-serif';
+      ctx.fillText('BioSnap AI Specimen Diagnostic Benchmark', 320, 422);
+
+      canvas.toBlob(blob => {
+        if (!blob) return;
+        const file = new File([blob], `${speciesName.toLowerCase().replace(/[^a-z0-9]/g, '_')}_test.jpg`, { type: 'image/jpeg' });
+        processSelectedFile(file);
+        const pane = document.getElementById('panelLeftIdentify');
+        if (pane) pane.scrollTo({ top: 0, behavior: 'smooth' });
+        showNeighborToast(`✓ Loaded test sample: ${speciesName}! Click 'Identify Species' to run.`);
+      }, 'image/jpeg', 0.95);
+    }
+
     function processSelectedFile(file) {
       if (!file || !file.type.startsWith('image/')) return;
       selectedImageFile = file;
@@ -2998,6 +3240,15 @@
         }
 
         output.innerHTML = html;
+
+        if (localMatches.length > 0 || hasAlbMatch) {
+          const matchName = hasAlbMatch ? 'Asian Longhorned Beetle (Candidate)' : (localMatches[0]?.common_name || 'Invasive Specimen');
+          const matchSci = hasAlbMatch ? 'Anoplophora glabripennis' : (localMatches[0]?.scientific_name || '');
+          const matchScore = hasAlbMatch ? 95 : Math.round((localMatches[0]?.score || 0.9) * 100);
+          addSessionScanLog(matchName, matchSci, true, matchScore);
+        } else {
+          addSessionScanLog(topName, topSci, false, topScore);
+        }
 
       } catch (err) {
         statusPill.textContent = 'Inference error: ' + err.message;

@@ -254,14 +254,56 @@ html, body {
   background-color: var(--bg-left);
   border-right: 1px solid var(--border-main);
   height: 100%;
-  overflow-y: scroll; /* Visible scroll bar on left panel */
-  padding: 38px 36px 80px;
+  min-height: 0;
+  max-height: 100%;
+  overflow-y: scroll; /* Smooth vertical scrollbar always active on left pane */
+  overflow-x: hidden;
+  padding: 38px 36px 120px;
   display: flex;
   flex-direction: column;
+  gap: 22px;
   align-items: center;
   justify-content: flex-start;
   scrollbar-width: thin;
   scrollbar-color: var(--green-accent) rgba(34, 197, 94, 0.08);
+  overscroll-behavior-y: contain;
+}
+
+.left-section-addon-card {
+  width: 100%;
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border-card);
+  border-radius: 18px;
+  padding: 24px 28px;
+  box-shadow: var(--bioglow-card-shadow);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
+}
+
+.left-section-addon-card:hover {
+  border-color: var(--border-card-hover);
+  box-shadow: var(--bioglow-card-hover);
+}
+
+.btn-sample-specimen {
+  background: var(--bg-card-subtle);
+  border: 1.5px solid var(--border-card);
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.btn-sample-specimen:hover {
+  border-color: var(--green-glow);
+  background: var(--green-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(34, 197, 94, 0.2);
 }
 
 .panel-left::-webkit-scrollbar,
@@ -298,7 +340,8 @@ html, body {
   box-shadow: 0 0 12px rgba(34, 197, 94, 0.55);
 }
 
-.card-identify-box {
+.card-identify-box,
+.identify-dialog-card {
   width: 100%;
   max-width: 580px;
   background-color: var(--bg-card);
@@ -308,6 +351,7 @@ html, body {
   text-align: center;
   box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.7);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
 }
 
 .card-identify-box.dragover {
