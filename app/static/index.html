@@ -117,7 +117,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 44px;
+      padding: 0 24px;
       z-index: 50;
       flex-shrink: 0;
       transition: background-color 0.25s ease, border-color 0.25s ease;
@@ -204,7 +204,7 @@
       display: flex;
       align-items: stretch;
       height: 100%;
-      gap: 8px;
+      gap: 4px;
     }
 
     .tab-item-btn {
@@ -212,17 +212,18 @@
       border: none;
       color: var(--text-muted);
       font-family: inherit;
-      font-size: 18px;
+      font-size: 15.5px;
       font-weight: 600;
-      padding: 0 28px;
+      padding: 0 13px;
       height: 100%;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 6px;
       position: relative;
       transition: color 0.15s ease, background-color 0.15s ease;
       user-select: none;
+      white-space: nowrap;
     }
 
     .tab-item-btn:hover {
@@ -1896,6 +1897,9 @@
         <button class="tab-item-btn" id="btnTabInvasive" onclick="switchActiveTab('invasive')">
           Invasive Species
         </button>
+        <button class="tab-item-btn" id="btnTabCommunity" onclick="switchActiveTab('community')">
+          🏛️ Community Alerts <span class="badge-alert-count" style="background:#f59e0b; width:auto; padding:2px 8px; border-radius:999px; font-size:11px;">LIVE</span>
+        </button>
         <button class="tab-item-btn" id="btnTabNeighbor" onclick="switchActiveTab('neighbor')">
           Neighbor <span class="badge-alert-count">2</span>
         </button>
@@ -2300,6 +2304,428 @@
         <div id="speciesCatalogTotalLabel" style="font-size:14.5px; color:var(--text-muted); margin-bottom:16px;">Loading species...</div>
         <div id="speciesCatalogGrid" class="species-grid-3"></div>
       </div>
+
+      <!-- ================= TAB: COMMUNITY ALERTS & TOWN ERADICATION ================= -->
+      <div id="tabContentCommunity" class="tab-pane-view">
+        <!-- OFFICIAL TOWN BULLETIN HEADER -->
+        <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:28px 34px; margin-bottom:28px; box-shadow:var(--bioglow-card-shadow); position:relative; overflow:hidden;">
+          <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, #f59e0b, #10b981, #3b82f6); border-radius:18px 18px 0 0;"></div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;">
+            <div>
+              <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:999px; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.35); color:#d97706; font-weight:800; font-size:13px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px;">
+                <span>🏛️</span> Town of Shrewsbury • Conservation &amp; DPW Forestry Division
+              </div>
+              <h1 class="headline-h1" style="margin-bottom:8px;">Official Community Alerts &amp; Eradication Status</h1>
+              <p class="paragraph-lead" style="margin-bottom:0;">
+                Public municipal biosecurity board for Shrewsbury, Worcester County, and neighboring Massachusetts corridors. Review verified sightings, active containment progress, and eradication percentages below.
+              </p>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
+              <span style="font-size:12.5px; font-weight:700; color:var(--green-accent); background:rgba(34,197,94,0.1); padding:5px 14px; border-radius:999px; border:1px solid rgba(34,197,94,0.3);">
+                ● Live Town Record • Updated Weekly
+              </span>
+              <button type="button" class="btn-action-primary" style="padding:10px 18px; font-size:14px; border-radius:10px;" onclick="scrollToTownSubscribe()">
+                🔔 Subscribe for Neighborhood Alerts
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 TOWN-WIDE KPI ERADICATION METRICS -->
+        <div style="margin-bottom:34px;">
+          <h2 style="font-size:22px; font-weight:800; color:var(--text-white); margin-bottom:6px;">
+            Municipal Eradication &amp; Containment Overview
+          </h2>
+          <p style="font-size:15px; color:var(--text-muted); margin-bottom:20px;">
+            Audited progress across monitored municipal parklands, water bodies, and transportation corridors.
+          </p>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+            <!-- Metric 1: Overall Municipal Containment -->
+            <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:24px 26px; box-shadow:var(--bioglow-card-shadow);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <span style="font-size:13px; font-weight:800; color:var(--text-dim); text-transform:uppercase;">Overall Town Containment</span>
+                <span style="font-size:12px; font-weight:800; color:#15803d; background:rgba(34,197,94,0.12); padding:3px 10px; border-radius:999px;">On Target</span>
+              </div>
+              <div style="font-size:36px; font-weight:800; color:var(--green-accent); margin-bottom:8px;">68%</div>
+              <div style="font-size:14px; font-weight:700; color:var(--text-white); margin-bottom:12px;">Contained &amp; Monitored</div>
+              <!-- Segmented Progress Bar -->
+              <div style="height:10px; border-radius:999px; background:rgba(0,0,0,0.06); overflow:hidden; display:flex; margin-bottom:12px;">
+                <div style="width:68%; background:#22c55e;" title="68% Eradicated"></div>
+                <div style="width:24%; background:#f59e0b;" title="24% In Progress"></div>
+                <div style="width:8%; background:#ef4444;" title="8% Pending"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:12.5px; color:var(--text-dim);">
+                <span><b>1,420 Acres</b> Cleared (68%)</span>
+                <span><b>502 A.</b> In Progress (24%)</span>
+              </div>
+            </div>
+
+            <!-- Metric 2: Lake Quinsigamond Aquatic Weed Defense -->
+            <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:24px 26px; box-shadow:var(--bioglow-card-shadow);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <span style="font-size:13px; font-weight:800; color:var(--text-dim); text-transform:uppercase;">Lake Quinsigamond Weeds</span>
+                <span style="font-size:12px; font-weight:800; color:#0284c7; background:rgba(14,165,233,0.12); padding:3px 10px; border-radius:999px;">High Control</span>
+              </div>
+              <div style="font-size:36px; font-weight:800; color:#0284c7; margin-bottom:8px;">84%</div>
+              <div style="font-size:14px; font-weight:700; color:var(--text-white); margin-bottom:12px;">Eradicated / Cleared</div>
+              <div style="height:10px; border-radius:999px; background:rgba(0,0,0,0.06); overflow:hidden; display:flex; margin-bottom:12px;">
+                <div style="width:84%; background:#0ea5e9;"></div>
+                <div style="width:16%; background:#f59e0b;"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:12.5px; color:var(--text-dim);">
+                <span><b>4,800 lbs</b> Removed (84%)</span>
+                <span><b>16%</b> Diver Harvesting</span>
+              </div>
+            </div>
+
+            <!-- Metric 3: Spotted Lanternfly Rail & Highway Buffer -->
+            <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:24px 26px; box-shadow:var(--bioglow-card-shadow);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <span style="font-size:13px; font-weight:800; color:var(--text-dim); text-transform:uppercase;">Route 9 &amp; Rail SLF Buffer</span>
+                <span style="font-size:12px; font-weight:800; color:#d97706; background:rgba(245,158,11,0.12); padding:3px 10px; border-radius:999px;">Active Work</span>
+              </div>
+              <div style="font-size:36px; font-weight:800; color:#d97706; margin-bottom:8px;">72%</div>
+              <div style="font-size:14px; font-weight:700; color:var(--text-white); margin-bottom:12px;">Treatment In Progress</div>
+              <div style="height:10px; border-radius:999px; background:rgba(0,0,0,0.06); overflow:hidden; display:flex; margin-bottom:12px;">
+                <div style="width:72%; background:#f59e0b;"></div>
+                <div style="width:28%; background:#ef4444;"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:12.5px; color:var(--text-dim);">
+                <span><b>340</b> Host Trees Culled (72%)</span>
+                <span><b>89</b> Egg Masses Scraped</span>
+              </div>
+            </div>
+
+            <!-- Metric 4: Asian Longhorned Beetle Public Tree Health -->
+            <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:24px 26px; box-shadow:var(--bioglow-card-shadow);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <span style="font-size:13px; font-weight:800; color:var(--text-dim); text-transform:uppercase;">ALB Street Tree Survey</span>
+                <span style="font-size:12px; font-weight:800; color:#15803d; background:rgba(34,197,94,0.12); padding:3px 10px; border-radius:999px;">Zero Active Infestations</span>
+              </div>
+              <div style="font-size:36px; font-weight:800; color:var(--green-accent); margin-bottom:8px;">98.6%</div>
+              <div style="font-size:14px; font-weight:700; color:var(--text-white); margin-bottom:12px;">Inspected &amp; Confirmed Clear</div>
+              <div style="height:10px; border-radius:999px; background:rgba(0,0,0,0.06); overflow:hidden; display:flex; margin-bottom:12px;">
+                <div style="width:98.6%; background:#22c55e;"></div>
+                <div style="width:1.4%; background:#cbd5e1;"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:12.5px; color:var(--text-dim);">
+                <span><b>5,420 Trees</b> Inspected</span>
+                <span><b>12/12</b> Lookalikes Verified Safe</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOWN TREATMENT ZONES (4 DETAILED ZONES) -->
+        <div style="margin-bottom:38px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h2 style="font-size:22px; font-weight:800; color:var(--text-white); margin-bottom:4px;">
+                Shrewsbury Municipal Treatment Zones
+              </h2>
+              <p style="font-size:15px; color:var(--text-muted); margin-bottom:0;">
+                Detailed eradication progress, active DPW crew deployments, and public guidance by neighborhood.
+              </p>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button type="button" class="cat-pill active" id="btnZoneAll" onclick="filterTownZones('all', this)">All Zones (4)</button>
+              <button type="button" class="cat-pill" id="btnZoneHigh" onclick="filterTownZones('high', this)">🟢 High Control (&gt;80%)</button>
+              <button type="button" class="cat-pill" id="btnZoneProgress" onclick="filterTownZones('progress', this)">🟡 In Progress (50-80%)</button>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:20px;" id="townZonesContainer">
+            <!-- Zone A -->
+            <div class="town-zone-card" data-zone="high" style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:26px; box-shadow:var(--bioglow-card-shadow);">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                <div>
+                  <div style="font-size:12px; font-weight:800; color:#15803d; text-transform:uppercase;">Municipal Priority Zone A</div>
+                  <h3 style="font-size:19px; font-weight:800; color:var(--text-white); margin-top:2px;">Dean Park &amp; Town Center</h3>
+                </div>
+                <span style="font-size:12.5px; font-weight:700; color:#15803d; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.3); padding:4px 12px; border-radius:999px;">
+                  ✓ 92% Eradicated
+                </span>
+              </div>
+              <p style="font-size:14.5px; color:var(--text-muted); line-height:1.6; margin-bottom:14px;">
+                All high-risk maple and ash canopies in Dean Park have completed state arborist inspections. Winter egg-mass scraping cleared 100% of reported clusters.
+              </p>
+              <div style="background:var(--bg-card-subtle); border:1px solid var(--border-card); border-radius:12px; padding:12px 16px; margin-bottom:14px; font-size:13.5px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="color:var(--text-dim);">Eradicated / Cleared:</span>
+                  <b style="color:var(--green-accent);">92%</b>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="color:var(--text-dim);">In Progress (Monitoring):</span>
+                  <b style="color:#f59e0b;">8%</b>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                  <span style="color:var(--text-dim);">Confirmed Infestations:</span>
+                  <b style="color:var(--text-white);">0 Active</b>
+                </div>
+              </div>
+              <div style="font-size:13px; color:var(--text-dim);">
+                <b>Public Guidance:</b> Homeowners may request a free municipal arborist tree health tag via the left panel report button.
+              </div>
+            </div>
+
+            <!-- Zone B -->
+            <div class="town-zone-card" data-zone="progress" style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:26px; box-shadow:var(--bioglow-card-shadow);">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                <div>
+                  <div style="font-size:12px; font-weight:800; color:#d97706; text-transform:uppercase;">Municipal Priority Zone B</div>
+                  <h3 style="font-size:19px; font-weight:800; color:var(--text-white); margin-top:2px;">Route 9 Corridor &amp; Rail Spurs</h3>
+                </div>
+                <span style="font-size:12.5px; font-weight:700; color:#d97706; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3); padding:4px 12px; border-radius:999px;">
+                  ⚡ 62% Eradicated • 38% In Progress
+                </span>
+              </div>
+              <p style="font-size:14.5px; color:var(--text-muted); line-height:1.6; margin-bottom:14px;">
+                Targeted bio-culling of invasive Tree-of-Heaven (Ailanthus altissima) groves along highway berms. DPW bucket trucks deploying to scrape utility line egg masses.
+              </p>
+              <div style="background:var(--bg-card-subtle); border:1px solid var(--border-card); border-radius:12px; padding:12px 16px; margin-bottom:14px; font-size:13.5px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="color:var(--text-dim);">Eradicated / Cleared:</span>
+                  <b style="color:var(--green-accent);">62%</b>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="color:var(--text-dim);">In Progress (Active Spray):</span>
+                  <b style="color:#f59e0b;">38%</b>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                  <span style="color:var(--text-dim);">Confirmed SLF Sightings:</span>
+                  <b style="color:#ef4444;">3 Localized Clusters (All Neutralized)</b>
+                </div>
+              </div>
+              <div style="font-size:13px; color:var(--text-dim);">
+                <b>Public Guidance:</b> Do not transport firewood or uninspected commercial yard waste across Route 9 boundaries.
+              </div>
+            </div>
+
+            <!-- Zone C -->
+            <div class="town-zone-card" data-zone="high" style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:26px; box-shadow:var(--bioglow-card-shadow);">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                <div>
+                  <div style="font-size:12px; font-weight:800; color:#0284c7; text-transform:uppercase;">Municipal Priority Zone C</div>
+                  <h3 style="font-size:19px; font-weight:800; color:var(--text-white); margin-top:2px;">Lake Quinsigamond &amp; Flint Pond</h3>
+                </div>
+                <span style="font-size:12.5px; font-weight:700; color:#0284c7; background:rgba(14,165,233,0.12); border:1px solid rgba(14,165,233,0.3); padding:4px 12px; border-radius:999px;">
+                  ✓ 85% Eradicated
+                </span>
+              </div>
+              <p style="font-size:14.5px; color:var(--text-muted); line-height:1.6; margin-bottom:14px;">
+                Mechanical aquatic harvesters completed 120 operational hours, removing 4,800 lbs of Water Chestnut. 8 bottom-barrier mats anchored to protect recreational boat channels.
+              </p>
+              <div style="background:var(--bg-card-subtle); border:1px solid var(--border-card); border-radius:12px; padding:12px 16px; margin-bottom:14px; font-size:13.5px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="color:var(--text-dim);">Eradicated / Cleared:</span>
+                  <b style="color:var(--green-accent);">85%</b>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="color:var(--text-dim);">In Progress (Diver Pulling):</span>
+                  <b style="color:#f59e0b;">15%</b>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                  <span style="color:var(--text-dim);">Boat Inspection Compliance:</span>
+                  <b style="color:#0284c7;">100% Clean-Drain-Dry</b>
+                </div>
+              </div>
+              <div style="font-size:13px; color:var(--text-dim);">
+                <b>Public Guidance:</b> Boaters must inspect props, trailers, and bilges before launching. Clean-drain-dry stations open at North Ramp.
+              </div>
+            </div>
+
+            <!-- Zone D -->
+            <div class="town-zone-card" data-zone="progress" style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:26px; box-shadow:var(--bioglow-card-shadow);">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                <div>
+                  <div style="font-size:12px; font-weight:800; color:#d97706; text-transform:uppercase;">Municipal Priority Zone D</div>
+                  <h3 style="font-size:19px; font-weight:800; color:var(--text-white); margin-top:2px;">Jordan Pond &amp; Glavin Greenways</h3>
+                </div>
+                <span style="font-size:12.5px; font-weight:700; color:#d97706; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.3); padding:4px 12px; border-radius:999px;">
+                  🌿 54% Eradicated • 46% In Progress
+                </span>
+              </div>
+              <p style="font-size:14.5px; color:var(--text-muted); line-height:1.6; margin-bottom:14px;">
+                Community pull drives removed 650 lbs of Garlic Mustard and Oriental Bittersweet. DPW crews installed solarization tarps over Japanese Knotweed along brook margins.
+              </p>
+              <div style="background:var(--bg-card-subtle); border:1px solid var(--border-card); border-radius:12px; padding:12px 16px; margin-bottom:14px; font-size:13.5px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="color:var(--text-dim);">Eradicated / Cleared:</span>
+                  <b style="color:var(--green-accent);">54%</b>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="color:var(--text-dim);">In Progress (Volunteer Pulls):</span>
+                  <b style="color:#f59e0b;">46%</b>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                  <span style="color:var(--text-dim);">Active Volunteer Hours:</span>
+                  <b style="color:var(--text-white);">280 Hours Logged</b>
+                </div>
+              </div>
+              <div style="font-size:13px; color:var(--text-dim);">
+                <b>Public Guidance:</b> Help native wildflowers recover! Register for the upcoming Saturday community weed pull in the Announcements tab.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONFIRMED SIGHTING INCIDENT LOG (THE TOWN'S VERIFIED BLOTTER) -->
+        <div style="margin-bottom:38px;">
+          <h2 style="font-size:22px; font-weight:800; color:var(--text-white); margin-bottom:6px;">
+            Confirmed Municipal Incident Registry
+          </h2>
+          <p style="font-size:15px; color:var(--text-muted); margin-bottom:18px;">
+            Case files logged by residents, verified by Shrewsbury Conservation &amp; MDAR arborists, with official remediation status.
+          </p>
+
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <!-- Case 1 -->
+            <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:22px 26px; box-shadow:var(--bioglow-card-shadow);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="font-weight:800; color:var(--text-white); font-size:17px;">Case #SHR-2026-094</span>
+                  <span style="font-size:13px; color:var(--text-dim);">• Reported: Nov 12, 2026</span>
+                </div>
+                <span style="font-size:12px; font-weight:800; color:#15803d; background:rgba(34,197,94,0.12); padding:4px 12px; border-radius:999px;">
+                  ✓ CONFIRMED BY ARBORIST • 100% ERADICATED
+                </span>
+              </div>
+              <div style="font-size:15px; font-weight:700; color:var(--green-accent); margin-bottom:6px;">
+                Spotted Lanternfly (Lycorma delicatula) — Egg-Mass Cluster
+              </div>
+              <p style="font-size:14.5px; color:var(--text-muted); line-height:1.6; margin-bottom:10px;">
+                <b>Location:</b> Route 9 East near Maple St junction.<br>
+                <b>Town Action Taken:</b> Resident scan verified by Shrewsbury DPW Forestry within 18 hours. Two overwintering egg clusters scraped into isopropyl alcohol and incinerated. 50-meter perimeter of host trees inspected with zero additional egg masses identified.
+              </p>
+              <div style="font-size:13px; color:var(--text-dim);">
+                <b>Remediation Status:</b> Cleared &amp; Closed • Continuous bi-weekly monitoring active.
+              </div>
+            </div>
+
+            <!-- Case 2 -->
+            <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:22px 26px; box-shadow:var(--bioglow-card-shadow);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="font-weight:800; color:var(--text-white); font-size:17px;">Case #SHR-2026-088</span>
+                  <span style="font-size:13px; color:var(--text-dim);">• Reported: Nov 8, 2026</span>
+                </div>
+                <span style="font-size:12px; font-weight:800; color:#0284c7; background:rgba(14,165,233,0.12); padding:4px 12px; border-radius:999px;">
+                  ✓ RESOLVED: SAFE NATIVE LOOKALIKE (NO RISK)
+                </span>
+              </div>
+              <div style="font-size:15px; font-weight:700; color:#0284c7; margin-bottom:6px;">
+                Whitespotted Sawyer (Monochamus scutellatus) — Native Beetle
+              </div>
+              <p style="font-size:14.5px; color:var(--text-muted); line-height:1.6; margin-bottom:10px;">
+                <b>Location:</b> Dean Park Trailhead (off Main St).<br>
+                <b>Town Action Taken:</b> Specimen photo submitted by resident reviewed by state entomologists. Confirmed as harmless native Whitespotted Sawyer beetle (distinguished by white scutellum spot and non-banded antennae). No quarantine action required.
+              </p>
+              <div style="font-size:13px; color:var(--text-dim);">
+                <b>Remediation Status:</b> Non-Regulated • Native Biodiversity Protected.
+              </div>
+            </div>
+
+            <!-- Case 3 -->
+            <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:22px 26px; box-shadow:var(--bioglow-card-shadow);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="font-weight:800; color:var(--text-white); font-size:17px;">Case #SHR-2026-073</span>
+                  <span style="font-size:13px; color:var(--text-dim);">• Reported: Nov 4, 2026</span>
+                </div>
+                <span style="font-size:12px; font-weight:800; color:#d97706; background:rgba(245,158,11,0.12); padding:4px 12px; border-radius:999px;">
+                  ⚡ CONFIRMED • 85% HARVESTED • TREATMENT IN PROGRESS
+                </span>
+              </div>
+              <div style="font-size:15px; font-weight:700; color:#d97706; margin-bottom:6px;">
+                Water Chestnut (Trapa natans) — Floating Rosette Bed
+              </div>
+              <p style="font-size:14.5px; color:var(--text-muted); line-height:1.6; margin-bottom:10px;">
+                <b>Location:</b> Lake Quinsigamond North Boat Ramp.<br>
+                <b>Town Action Taken:</b> DPW mechanical weed harvester deployed. Removed ~420 lbs of floating rosettes before seeds detached. Heavy-duty shade blankets anchored over benthic seed bed to prevent spring 2026 sprouting.
+              </p>
+              <div style="font-size:13px; color:var(--text-dim);">
+                <b>Remediation Status:</b> In Progress (85% Cleared) • Follow-up diver inspection scheduled for May.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESIDENT ALERTS SUBSCRIPTION & TOWN DIRECTORY -->
+        <div id="townSubscribeSection" style="background:var(--bg-card); border:2px solid var(--border-card); border-radius:20px; padding:32px 36px; box-shadow:var(--bioglow-card-shadow); margin-bottom:34px; position:relative;">
+          <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, #f59e0b, #10b981, #3b82f6); border-radius:20px 20px 0 0;"></div>
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <div style="font-size:26px;">🔔</div>
+            <h2 style="font-size:22px; font-weight:800; color:var(--text-white);">
+              Subscribe to Neighborhood Biosecurity Bulletins
+            </h2>
+          </div>
+          <p style="font-size:15px; color:var(--text-muted); margin-bottom:22px;">
+            Stay informed when municipal DPW crews are active in your area, or when new invasive confirmations occur within 1 mile of your street.
+          </p>
+
+          <form onsubmit="event.preventDefault(); subscribeTownAlerts();">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-bottom:18px;">
+              <div>
+                <label style="display:block; font-size:14px; font-weight:700; color:var(--text-light); margin-bottom:6px;">
+                  Your Street Address or Neighborhood *
+                </label>
+                <input type="text" id="townSubStreet" placeholder="e.g. 45 Maple Ave, Dean Park area" required style="width:100%; background:var(--input-bg); border:1.5px solid var(--input-border); color:var(--input-text); border-radius:10px; padding:12px 16px; font-size:14.5px; font-family:inherit; outline:none;">
+              </div>
+              <div>
+                <label style="display:block; font-size:14px; font-weight:700; color:var(--text-light); margin-bottom:6px;">
+                  Select Your Municipal Zone *
+                </label>
+                <select id="townSubZone" required style="width:100%; background:var(--input-bg); border:1.5px solid var(--input-border); color:var(--input-text); border-radius:10px; padding:12px 16px; font-size:14.5px; font-family:inherit; outline:none;">
+                  <option value="Zone A (Dean Park & Town Center)">Zone A (Dean Park &amp; Town Center)</option>
+                  <option value="Zone B (Route 9 Corridor & Rails)">Zone B (Route 9 Corridor &amp; Rails)</option>
+                  <option value="Zone C (Lake Quinsigamond Shoreline)">Zone C (Lake Quinsigamond Shoreline)</option>
+                  <option value="Zone D (Jordan Pond & Glavin Trails)">Zone D (Jordan Pond &amp; Glavin Trails)</option>
+                  <option value="All Shrewsbury Zones (Full Town Alerts)">All Shrewsbury Zones (Full Town Alerts)</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; margin-bottom:20px;">
+              <div>
+                <label style="display:block; font-size:14px; font-weight:700; color:var(--text-light); margin-bottom:6px;">
+                  Email Address *
+                </label>
+                <input type="email" id="townSubEmail" placeholder="e.g. resident@example.com" required style="width:100%; background:var(--input-bg); border:1.5px solid var(--input-border); color:var(--input-text); border-radius:10px; padding:12px 16px; font-size:14.5px; font-family:inherit; outline:none;">
+              </div>
+              <div>
+                <label style="display:block; font-size:14px; font-weight:700; color:var(--text-light); margin-bottom:6px;">
+                  Mobile Number (Optional for SMS Alerts)
+                </label>
+                <input type="tel" id="townSubPhone" placeholder="e.g. (508) 555-0142" style="width:100%; background:var(--input-bg); border:1.5px solid var(--input-border); color:var(--input-text); border-radius:10px; padding:12px 16px; font-size:14.5px; font-family:inherit; outline:none;">
+              </div>
+            </div>
+
+            <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;">
+              <button type="submit" class="btn-action-primary" style="padding:14px 28px; font-size:15.5px; border-radius:10px;">
+                🔔 Subscribe to Town Bulletins
+              </button>
+              <button type="button" class="btn-action-secondary" style="padding:14px 22px; font-size:15px; border-radius:10px;" onclick="scrollToReportScanner()">
+                🔍 Report a Sighting to the Town →
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TOWN BIOSECURITY CONTACTS -->
+        <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:16px; padding:22px 28px; font-size:14px; color:var(--text-muted); line-height:1.7;">
+          <h3 style="font-size:16.5px; font-weight:800; color:var(--text-white); margin-bottom:8px;">
+            Town of Shrewsbury Biosecurity Directory
+          </h3>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
+            <div><b>Town Hall:</b> 100 Maple Ave, Shrewsbury MA 01545</div>
+            <div><b>Conservation Office:</b> (508) 841-8502</div>
+            <div><b>DPW Forestry Division:</b> (508) 841-8511</div>
+            <div><b>State MDAR Pest Hotline:</b> (617) 626-1779</div>
+          </div>
+        </div>
+      </div>
+
 
       <!-- ================= TAB 3: NEIGHBOR (INTERACTIVE COMMUNITY FEED) ================= -->
       <div id="tabContentNeighbor" class="tab-pane-view">
@@ -2840,7 +3266,7 @@
     // 1. Tab Switching
     function switchActiveTab(tabId) {
       if (tabId === 'tech') tabId = 'announcements';
-      const tabs = ['about', 'invasive', 'neighbor', 'announcements'];
+      const tabs = ['about', 'invasive', 'community', 'neighbor', 'announcements'];
       tabs.forEach(t => {
         const btn = document.getElementById('btnTab' + t.charAt(0).toUpperCase() + t.slice(1));
         const pane = document.getElementById('tabContent' + t.charAt(0).toUpperCase() + t.slice(1));
@@ -2855,6 +3281,55 @@
         renderNeighborFeed();
         renderRadarPins();
       }
+    }
+
+    // 1a. Community Alerts & Eradication Handlers
+    function filterTownZones(type, btn) {
+      document.querySelectorAll('#tabContentCommunity .cat-pill').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.town-zone-card');
+      cards.forEach(card => {
+        if (type === 'all') {
+          card.style.display = 'block';
+        } else if (type === 'high') {
+          card.style.display = card.getAttribute('data-zone') === 'high' ? 'block' : 'none';
+        } else if (type === 'progress') {
+          card.style.display = card.getAttribute('data-zone') === 'progress' ? 'block' : 'none';
+        }
+      });
+    }
+
+    function scrollToTownSubscribe() {
+      const el = document.getElementById('townSubscribeSection');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      const street = document.getElementById('townSubStreet');
+      if (street) street.focus();
+    }
+
+    function subscribeTownAlerts() {
+      const street = document.getElementById('townSubStreet')?.value.trim();
+      const zone = document.getElementById('townSubZone')?.value;
+      const email = document.getElementById('townSubEmail')?.value.trim();
+
+      if (!street || !email) {
+        alert('Please provide your street address and email.');
+        return;
+      }
+
+      showNeighborToast(`✓ Subscribed to official Town of Shrewsbury alerts for ${zone.split('(')[0].trim()}!`);
+      const streetInp = document.getElementById('townSubStreet');
+      const emailInp = document.getElementById('townSubEmail');
+      const phoneInp = document.getElementById('townSubPhone');
+      if (streetInp) streetInp.value = '';
+      if (emailInp) emailInp.value = '';
+      if (phoneInp) phoneInp.value = '';
+    }
+
+    function scrollToReportScanner() {
+      const pane = document.getElementById('panelLeftIdentify');
+      if (pane) pane.scrollTo({ top: 0, behavior: 'smooth' });
+      showNeighborToast('📷 Scanner ready on left pane. Capture or upload photo to file official report!');
     }
 
     // 1b. Volunteer & Announcement Actions
