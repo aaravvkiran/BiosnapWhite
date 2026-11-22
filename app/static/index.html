@@ -281,13 +281,42 @@
       background-color: var(--bg-left);
       border-right: 1.5px solid var(--border-main);
       height: 100%;
-      overflow-y: auto;
-      padding: 34px 38px;
+      overflow-y: scroll; /* Scrollbar always visible on the left pane */
+      padding: 34px 38px 80px;
       display: flex;
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-start;
       transition: background-color 0.25s ease;
+      scrollbar-width: thin;
+      scrollbar-color: var(--green-accent) rgba(34, 197, 94, 0.08);
+    }
+
+    /* CUSTOM BIOGLOW SCROLLBARS FOR LEFT & RIGHT PANELS */
+    .panel-left-dialog::-webkit-scrollbar,
+    .panel-right-content::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .panel-left-dialog::-webkit-scrollbar-track,
+    .panel-right-content::-webkit-scrollbar-track {
+      background: rgba(34, 197, 94, 0.06);
+      border-radius: 8px;
+    }
+
+    .panel-left-dialog::-webkit-scrollbar-thumb,
+    .panel-right-content::-webkit-scrollbar-thumb {
+      background: rgba(34, 197, 94, 0.42);
+      border-radius: 8px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      transition: background-color 0.2s ease;
+    }
+
+    .panel-left-dialog::-webkit-scrollbar-thumb:hover,
+    .panel-right-content::-webkit-scrollbar-thumb:hover {
+      background: var(--green-glow);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.55);
     }
 
     .identify-dialog-card {
@@ -869,8 +898,10 @@
     .panel-right-content {
       background-color: var(--bg-right);
       height: 100%;
-      overflow-y: auto;
+      overflow-y: scroll;
       padding: 40px 48px 100px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--green-accent) rgba(34, 197, 94, 0.08);
     }
 
     .tab-pane-view {
@@ -1825,8 +1856,8 @@
         <button class="tab-item-btn" id="btnTabNeighbor" onclick="switchActiveTab('neighbor')">
           Neighbor <span class="badge-alert-count">2</span>
         </button>
-        <button class="tab-item-btn" id="btnTabTech" onclick="switchActiveTab('tech')">
-          Tech Updates
+        <button class="tab-item-btn" id="btnTabAnnouncements" onclick="switchActiveTab('announcements')">
+          📢 Announcements
         </button>
       </nav>
 
@@ -2274,44 +2305,364 @@
         </div>
       </div>
 
-      <!-- ================= TAB 4: TECH UPDATES ================= -->
-      <div id="tabContentTech" class="tab-pane-view">
-        <h1 class="headline-h1">Tech & Architecture Updates</h1>
-        <p class="paragraph-lead">
-          Technical specifications for the local computer vision inference pipeline and audit system.
-        </p>
-
-        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(380px, 1fr)); gap:22px; margin-top:24px; width:100%;">
-          <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:26px 28px; box-shadow:var(--bioglow-card-shadow);">
-            <div style="font-weight:800; color:var(--green-accent); font-size:19.5px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
-              <span style="color:#22c55e;">✦</span> BioCLIP 2 TreeOfLife Classifier
+      <!-- ================= TAB 4: ANNOUNCEMENTS & VOLUNTEER HUB ================= -->
+      <div id="tabContentAnnouncements" class="tab-pane-view">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; flex-wrap:wrap; gap:16px;">
+          <div>
+            <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:999px; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.3); color:var(--green-accent); font-weight:700; font-size:13.5px; margin-bottom:12px;">
+              <span>📢</span> Community Bulletins &amp; Stewardship
             </div>
-            <p style="font-size:15.5px; color:var(--text-muted); line-height:1.65; margin-bottom:14px;">
-              Open-world taxonomic classification covering over 450,000 biological taxa. First-stage identification yields top 5 species and genus matches.
+            <h1 class="headline-h1">Announcements &amp; Volunteer Opportunities</h1>
+            <p class="paragraph-lead" style="margin-bottom:0;">
+              Protecting Massachusetts ecosystems is a team effort. Discover active field alerts, join local survey walks, or register as a volunteer steward below!
             </p>
-            <div style="font-size:13.5px; color:var(--text-dim); font-weight:600;">Framework: PyTorch 2.14 • OpenCLIP • HuggingFace Hub</div>
           </div>
+          <button type="button" class="btn-action-primary" style="padding:14px 26px; font-size:16px; border-radius:12px;" onclick="scrollToVolunteerForm()">
+            🌱 Register as a Volunteer
+          </button>
+        </div>
 
-          <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:26px 28px; box-shadow:var(--bioglow-card-shadow);">
-            <div style="font-weight:800; color:var(--green-accent); font-size:19.5px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
-              <span style="color:#22c55e;">✦</span> Closed-Set Lookalike Filter
-            </div>
-            <p style="font-size:15.5px; color:var(--text-muted); line-height:1.65; margin-bottom:14px;">
-              Specialized second-pass CustomLabelsClassifier disambiguates regulated Cerambycidae (Asian longhorned beetle) from native lookalikes (Whitespotted & Northeastern sawyers).
-            </p>
-            <div style="font-size:13.5px; color:var(--text-dim); font-weight:600;">CustomLabelsClassifier with safety warnings</div>
+        <!-- STATS IMPACT HIGHLIGHT -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:18px; margin-bottom:32px;">
+          <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:20px 24px; box-shadow:var(--bioglow-card-shadow);">
+            <div style="font-size:30px; font-weight:800; color:var(--green-accent); margin-bottom:4px;">148+</div>
+            <div style="font-size:15px; font-weight:700; color:var(--text-white);">Active Community Volunteers</div>
+            <div style="font-size:13px; color:var(--text-dim); margin-top:2px;">Across Worcester County &amp; MetroWest</div>
           </div>
-
-          <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:26px 28px; box-shadow:var(--bioglow-card-shadow);">
-            <div style="font-weight:800; color:var(--green-accent); font-size:19.5px; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
-              <span style="color:#22c55e;">✦</span> Local SQLite Data & Privacy
-            </div>
-            <p style="font-size:15.5px; color:var(--text-muted); line-height:1.65; margin-bottom:14px;">
-              All images submitted with user consent are stripped of GPS/EXIF metadata via PIL and saved locally in <code>storage/</code> with SHA-256 UUID identifiers.
-            </p>
-            <div style="font-size:13.5px; color:var(--text-dim); font-weight:600;">Zero third-party telemetry • Local processing</div>
+          <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:20px 24px; box-shadow:var(--bioglow-card-shadow);">
+            <div style="font-size:30px; font-weight:800; color:#3b82f6; margin-bottom:4px;">1,840 lbs</div>
+            <div style="font-size:15px; font-weight:700; color:var(--text-white);">Invasive Biomass Removed</div>
+            <div style="font-size:13px; color:var(--text-dim); margin-top:2px;">Water Chestnut, Bittersweet &amp; Knotweed</div>
+          </div>
+          <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:20px 24px; box-shadow:var(--bioglow-card-shadow);">
+            <div style="font-size:30px; font-weight:800; color:#f59e0b; margin-bottom:4px;">3,200+</div>
+            <div style="font-size:15px; font-weight:700; color:var(--text-white);">Trees &amp; Shorelines Inspected</div>
+            <div style="font-size:13px; color:var(--text-dim); margin-top:2px;">Mapped via Eco Snap community scans</div>
+          </div>
+          <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:16px; padding:20px 24px; box-shadow:var(--bioglow-card-shadow);">
+            <div style="font-size:30px; font-weight:800; color:#ec4899; margin-bottom:4px;">100%</div>
+            <div style="font-size:15px; font-weight:700; color:var(--text-white);">Student &amp; Volunteer Led</div>
+            <div style="font-size:13px; color:var(--text-dim); margin-top:2px;">Approved for NHS Service Hours</div>
           </div>
         </div>
+
+        <!-- URGENT ANNOUNCEMENT CARD -->
+        <div style="background:var(--bg-card); border:2px solid rgba(239, 68, 68, 0.45); border-radius:18px; padding:28px 32px; margin-bottom:36px; box-shadow:0 8px 30px rgba(239, 68, 68, 0.08); position:relative; overflow:hidden;">
+          <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, #ef4444, #f59e0b, #ef4444);"></div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:280px;">
+              <div style="display:inline-flex; align-items:center; gap:8px; padding:5px 12px; border-radius:999px; background:rgba(239, 68, 68, 0.12); border:1px solid rgba(239, 68, 68, 0.35); color:#ef4444; font-weight:800; font-size:12.5px; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px;">
+                ⚡ Urgent Seasonal Alert • Spring 2026
+              </div>
+              <h2 style="font-size:22px; font-weight:800; color:var(--text-white); margin-bottom:10px;">
+                Spotted Lanternfly Egg-Mass Scraping &amp; Tree-of-Heaven Survey Blitz
+              </h2>
+              <p style="font-size:15.5px; color:var(--text-muted); line-height:1.65; margin-bottom:14px;">
+                The Massachusetts Department of Agricultural Resources (MDAR) has expanded monitoring zones. Overwintering egg masses (resembling grey dried mud) are currently attached to smooth tree trunks, stones, and outdoor furniture. Volunteers are urgently needed to inspect neighborhood perimeters and scrape egg masses into rubbing alcohol before nymphs hatch in May!
+              </p>
+              <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; font-size:14px; color:var(--text-dim);">
+                <span>📍 <b>Priority Zones:</b> Dean Park, Route 9 Corridor, Lake Quinsigamond Rail Spurs</span>
+                <span>📅 <b>Next Field Day:</b> Saturday, 9:00 AM – 11:30 AM</span>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px; align-items:stretch;">
+              <button type="button" class="btn-action-primary" style="padding:12px 20px; font-size:15px; border-radius:10px;" onclick="selectVolunteerRole('Spotted Lanternfly Field Scout')">
+                Join Saturday Blitz →
+              </button>
+              <button type="button" class="btn-action-secondary" style="padding:12px 20px; font-size:14px; border-radius:10px;" onclick="showGuideToast()">
+                📖 View Egg Scraping Guide
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 VOLUNTEER OPPORTUNITIES -->
+        <div style="margin-bottom:40px;">
+          <h2 style="font-size:24px; font-weight:800; color:var(--text-white); margin-bottom:8px;">
+            Open Volunteer Opportunities
+          </h2>
+          <p style="font-size:16px; color:var(--text-muted); margin-bottom:22px;">
+            Choose a role matching your schedule and interests. Field safety training and identification gear are provided at no cost.
+          </p>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:22px;">
+            <!-- Role 1 -->
+            <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:28px; box-shadow:var(--bioglow-card-shadow); display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+                  <div style="width:50px; height:50px; border-radius:14px; background:rgba(34,197,94,0.14); border:1.5px solid rgba(34,197,94,0.3); display:flex; align-items:center; justify-content:center; font-size:24px;">
+                    🌲
+                  </div>
+                  <span style="font-size:12.5px; font-weight:700; color:var(--green-accent); background:rgba(34,197,94,0.1); padding:4px 12px; border-radius:999px;">
+                    Flexible / Self-Paced
+                  </span>
+                </div>
+                <h3 style="font-size:19.5px; font-weight:800; color:var(--text-white); margin-bottom:8px;">
+                  Trail Scout &amp; Biodiversity Surveyor
+                </h3>
+                <p style="font-size:15px; color:var(--text-muted); line-height:1.6; margin-bottom:16px;">
+                  Walk your favorite town trails, school grounds, or neighborhood greenways. Use the Eco Snap scanner to capture suspect flora and fauna and build our community monitoring map.
+                </p>
+                <div style="font-size:13.5px; color:var(--text-dim); margin-bottom:18px; line-height:1.5;">
+                  <b>Great for:</b> Families, trail runners, nature photographers, bird watchers.<br>
+                  <b>Equipment:</b> Smartphone with Eco Snap, field magnifying lens.
+                </div>
+              </div>
+              <button type="button" class="btn-action-primary" style="width:100%; padding:11px; font-size:14.5px;" onclick="selectVolunteerRole('Trail Scout & Biodiversity Surveyor')">
+                Sign Up for Trail Scouting
+              </button>
+            </div>
+
+            <!-- Role 2 -->
+            <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:28px; box-shadow:var(--bioglow-card-shadow); display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+                  <div style="width:50px; height:50px; border-radius:14px; background:rgba(59,130,246,0.14); border:1.5px solid rgba(59,130,246,0.3); display:flex; align-items:center; justify-content:center; font-size:24px;">
+                    🌿
+                  </div>
+                  <span style="font-size:12.5px; font-weight:700; color:#3b82f6; background:rgba(59,130,246,0.1); padding:4px 12px; border-radius:999px;">
+                    Monthly Weekends
+                  </span>
+                </div>
+                <h3 style="font-size:19.5px; font-weight:800; color:var(--text-white); margin-bottom:8px;">
+                  Habitat Restoration &amp; Weed Pull Party
+                </h3>
+                <p style="font-size:15px; color:var(--text-muted); line-height:1.6; margin-bottom:16px;">
+                  Join energetic outdoor work sessions to physically pull Garlic Mustard, Oriental Bittersweet vines, and Multiflora Rose before native wildflowers are choked out.
+                </p>
+                <div style="font-size:13.5px; color:var(--text-dim); margin-bottom:18px; line-height:1.5;">
+                  <b>Great for:</b> Group volunteering, clubs, fitness enthusiasts, scouts.<br>
+                  <b>Equipment:</b> Heavy-duty work gloves and tools provided.
+                </div>
+              </div>
+              <button type="button" class="btn-action-primary" style="width:100%; padding:11px; font-size:14.5px;" onclick="selectVolunteerRole('Habitat Restoration & Weed Pull Party')">
+                Join Weed Pull Team
+              </button>
+            </div>
+
+            <!-- Role 3 -->
+            <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:28px; box-shadow:var(--bioglow-card-shadow); display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+                  <div style="width:50px; height:50px; border-radius:14px; background:rgba(14,165,233,0.14); border:1.5px solid rgba(14,165,233,0.3); display:flex; align-items:center; justify-content:center; font-size:24px;">
+                    🚣
+                  </div>
+                  <span style="font-size:12.5px; font-weight:700; color:#0ea5e9; background:rgba(14,165,233,0.1); padding:4px 12px; border-radius:999px;">
+                    Seasonal Shifts
+                  </span>
+                </div>
+                <h3 style="font-size:19.5px; font-weight:800; color:var(--text-white); margin-bottom:8px;">
+                  Lake &amp; Waterway Clean-Drain Ambassador
+                </h3>
+                <p style="font-size:15px; color:var(--text-muted); line-height:1.6; margin-bottom:16px;">
+                  Station at Lake Quinsigamond and local public boat launches to educate boaters, kayaks, and paddleboarders on washing gear to halt Eurasian Watermilfoil and Water Chestnut.
+                </p>
+                <div style="font-size:13.5px; color:var(--text-dim); margin-bottom:18px; line-height:1.5;">
+                  <b>Great for:</b> Kayakers, anglers, community communicators.<br>
+                  <b>Equipment:</b> Clean-drain-dry wash kits and informational flyers.
+                </div>
+              </div>
+              <button type="button" class="btn-action-primary" style="width:100%; padding:11px; font-size:14.5px;" onclick="selectVolunteerRole('Lake & Waterway Ambassador')">
+                Sign Up for Waterway Defense
+              </button>
+            </div>
+
+            <!-- Role 4 -->
+            <div style="background:var(--bg-card); border:1.5px solid var(--border-card); border-radius:18px; padding:28px; box-shadow:var(--bioglow-card-shadow); display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+                  <div style="width:50px; height:50px; border-radius:14px; background:rgba(236,72,153,0.14); border:1.5px solid rgba(236,72,153,0.3); display:flex; align-items:center; justify-content:center; font-size:24px;">
+                    🎓
+                  </div>
+                  <span style="font-size:12.5px; font-weight:700; color:#ec4899; background:rgba(236,72,153,0.1); padding:4px 12px; border-radius:999px;">
+                    NHS / Service Hours
+                  </span>
+                </div>
+                <h3 style="font-size:19.5px; font-weight:800; color:var(--text-white); margin-bottom:8px;">
+                  Student &amp; Youth Eco Ambassador
+                </h3>
+                <p style="font-size:15px; color:var(--text-muted); line-height:1.6; margin-bottom:16px;">
+                  Collaborate directly with our student founder team. Run live Eco Snap workshops at middle schools, libraries, and science exhibitions, and help verify local sighting data.
+                </p>
+                <div style="font-size:13.5px; color:var(--text-dim); margin-bottom:18px; line-height:1.5;">
+                  <b>Great for:</b> High school & middle school students, STEM club members.<br>
+                  <b>Credit:</b> Verified certificate for Community Service & NHS hours.
+                </div>
+              </div>
+              <button type="button" class="btn-action-primary" style="width:100%; padding:11px; font-size:14.5px;" onclick="selectVolunteerRole('Student & Youth Eco Ambassador')">
+                Join Student Ambassadors
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- VOLUNTEER REGISTRATION FORM -->
+        <div id="volunteerSignupAnchor" style="background:var(--bg-card); border:2px solid var(--border-card); border-radius:20px; padding:36px 40px; box-shadow:var(--bioglow-card-shadow); margin-bottom:36px; position:relative;">
+          <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, #10b981, #22c55e, #4ade80); border-radius:20px 20px 0 0;"></div>
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:8px;">
+            <div style="font-size:28px;">🌱</div>
+            <h2 style="font-size:24px; font-weight:800; color:var(--text-white);">
+              Join the Eco Snap Volunteer Steward Network
+            </h2>
+          </div>
+          <p style="font-size:15.5px; color:var(--text-muted); margin-bottom:26px;">
+            Fill out the quick form below. Our volunteer coordination team will contact you with orientation times, safety gear pickup, and upcoming event dates.
+          </p>
+
+          <form id="volunteerRegForm" onsubmit="event.preventDefault(); submitVolunteerRegistration();">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; margin-bottom:18px;">
+              <div>
+                <label style="display:block; font-size:14.5px; font-weight:700; color:var(--text-light); margin-bottom:8px;">
+                  Your Full Name *
+                </label>
+                <input type="text" id="volFullName" placeholder="e.g. Maya Lin" required style="width:100%; background:var(--input-bg); border:1.5px solid var(--input-border); color:var(--input-text); border-radius:10px; padding:12px 16px; font-size:15px; font-family:inherit; outline:none;">
+              </div>
+              <div>
+                <label style="display:block; font-size:14.5px; font-weight:700; color:var(--text-light); margin-bottom:8px;">
+                  Email Address *
+                </label>
+                <input type="email" id="volEmail" placeholder="e.g. maya@example.com" required style="width:100%; background:var(--input-bg); border:1.5px solid var(--input-border); color:var(--input-text); border-radius:10px; padding:12px 16px; font-size:15px; font-family:inherit; outline:none;">
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; margin-bottom:18px;">
+              <div>
+                <label style="display:block; font-size:14.5px; font-weight:700; color:var(--text-light); margin-bottom:8px;">
+                  Phone Number (for SMS event alerts)
+                </label>
+                <input type="tel" id="volPhone" placeholder="e.g. (508) 555-0198" style="width:100%; background:var(--input-bg); border:1.5px solid var(--input-border); color:var(--input-text); border-radius:10px; padding:12px 16px; font-size:15px; font-family:inherit; outline:none;">
+              </div>
+              <div>
+                <label style="display:block; font-size:14.5px; font-weight:700; color:var(--text-light); margin-bottom:8px;">
+                  Town or City *
+                </label>
+                <input type="text" id="volTown" placeholder="e.g. Shrewsbury, Worcester, Northborough" required style="width:100%; background:var(--input-bg); border:1.5px solid var(--input-border); color:var(--input-text); border-radius:10px; padding:12px 16px; font-size:15px; font-family:inherit; outline:none;">
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; margin-bottom:20px;">
+              <div>
+                <label style="display:block; font-size:14.5px; font-weight:700; color:var(--text-light); margin-bottom:8px;">
+                  Primary Volunteer Interest *
+                </label>
+                <select id="volInterest" required style="width:100%; background:var(--input-bg); border:1.5px solid var(--input-border); color:var(--input-text); border-radius:10px; padding:12px 16px; font-size:15px; font-family:inherit; outline:none;">
+                  <option value="Trail Scout & Biodiversity Surveyor">🌲 Trail Scout &amp; Biodiversity Surveyor</option>
+                  <option value="Habitat Restoration & Weed Pull Party">🌿 Habitat Restoration &amp; Weed Pull Party</option>
+                  <option value="Lake & Waterway Ambassador">🚣 Lake &amp; Waterway Clean-Drain Ambassador</option>
+                  <option value="Student & Youth Eco Ambassador">🎓 Student &amp; Youth Eco Ambassador</option>
+                  <option value="Spotted Lanternfly Field Scout">⚡ Spotted Lanternfly Egg-Mass Blitz</option>
+                  <option value="General Volunteer / Flexible">🌱 General Volunteer / Where Most Needed</option>
+                </select>
+              </div>
+              <div>
+                <label style="display:block; font-size:14.5px; font-weight:700; color:var(--text-light); margin-bottom:8px;">
+                  Availability
+                </label>
+                <select id="volAvailability" style="width:100%; background:var(--input-bg); border:1.5px solid var(--input-border); color:var(--input-text); border-radius:10px; padding:12px 16px; font-size:15px; font-family:inherit; outline:none;">
+                  <option value="Weekend Mornings (Sat/Sun)">Weekend Mornings (Sat/Sun)</option>
+                  <option value="Weekday Afternoons">Weekday Afternoons</option>
+                  <option value="Flexible / As-Needed Alerts">Flexible / As-Needed Alerts</option>
+                  <option value="Once a Month Community Blitzes">Once a Month Community Blitzes</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="margin-bottom:22px;">
+              <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-size:15px; color:var(--text-light); user-select:none;">
+                <input type="checkbox" id="volStudentCredit" style="width:18px; height:18px; accent-color:var(--green-accent);">
+                <span><b>Student Service Hours:</b> I am a middle or high school student and would like official documentation of volunteer hours for NHS or school credit.</span>
+              </label>
+            </div>
+
+            <div style="display:flex; justify-content:flex-start; gap:16px;">
+              <button type="submit" class="btn-action-primary" style="padding:15px 34px; font-size:16.5px; border-radius:12px;">
+                🌱 Submit Volunteer Application
+              </button>
+            </div>
+          </form>
+
+          <!-- VOLUNTEER CONFIRMATION RECEIPT (SHOWN POST-SUBMIT) -->
+          <div id="volunteerReceiptBox" style="display:none; margin-top:28px; background:var(--bg-card-subtle); border:2px solid var(--green-glow); border-radius:16px; padding:28px 32px; box-shadow:var(--bioglow-glow-md); animation:fadeIn 0.3s ease;">
+            <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
+              <div style="width:48px; height:48px; border-radius:50%; background:rgba(34,197,94,0.18); border:2px solid var(--green-glow); display:flex; align-items:center; justify-content:center; font-size:24px; color:var(--green-accent);">
+                ✓
+              </div>
+              <div>
+                <h3 style="font-size:20px; font-weight:800; color:var(--text-white); margin-bottom:2px;">
+                  Welcome to the Eco Snap Volunteer Team!
+                </h3>
+                <div style="font-size:14px; color:var(--green-accent); font-weight:700;">
+                  Volunteer Steward Registration Confirmed
+                </div>
+              </div>
+            </div>
+
+            <p style="font-size:15.5px; color:var(--text-muted); line-height:1.65; margin-bottom:18px;">
+              Thank you, <span id="receiptVolName" style="color:var(--text-white); font-weight:800;"></span>! Your registration has been dispatched to the local Conservation Volunteer Coordinator. A welcome packet with safety guidelines and upcoming field schedules will arrive in your inbox.
+            </p>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px; background:var(--bg-card); border:1px solid var(--border-card); border-radius:12px; padding:18px 22px; margin-bottom:20px;">
+              <div>
+                <div style="font-size:12.5px; color:var(--text-dim); text-transform:uppercase; font-weight:700;">Volunteer Steward ID</div>
+                <div id="receiptVolId" style="font-size:18px; font-weight:800; color:var(--green-accent); font-family:monospace; margin-top:2px;">VOL-2026-MA-4891</div>
+              </div>
+              <div>
+                <div style="font-size:12.5px; color:var(--text-dim); text-transform:uppercase; font-weight:700;">Assigned Focus</div>
+                <div id="receiptVolRole" style="font-size:16px; font-weight:700; color:var(--text-white); margin-top:2px;">Trail Scouting</div>
+              </div>
+              <div>
+                <div style="font-size:12.5px; color:var(--text-dim); text-transform:uppercase; font-weight:700;">Coordinator Hotline</div>
+                <div style="font-size:16px; font-weight:800; color:#2563eb; margin-top:2px;">(508) 792-7711 ext. 4</div>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:14px; flex-wrap:wrap;">
+              <button type="button" class="btn-action-secondary" style="padding:10px 20px; font-size:14px;" onclick="document.getElementById('volunteerReceiptBox').style.display='none'; document.getElementById('volunteerRegForm').reset();">
+                Register Another Volunteer
+              </button>
+              <button type="button" class="btn-action-primary" style="padding:10px 20px; font-size:14px;" onclick="switchActiveTab('invasive')">
+                Browse Invasive Catalog Species →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- VOLUNTEER FIELD SAFETY & COORDINATION FOOTER -->
+        <div style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:16px; padding:24px 28px; margin-bottom:28px;">
+          <h3 style="font-size:17.5px; font-weight:800; color:var(--text-white); margin-bottom:10px;">
+            🛡️ Volunteer Safety &amp; Ethics Principles
+          </h3>
+          <ul style="font-size:14.5px; color:var(--text-muted); line-height:1.7; padding-left:20px; margin-bottom:16px;">
+            <li><b>Wear appropriate field attire:</b> Sturdy closed-toe boots, long pants tucked into socks, and heavy-duty work gloves for pulling thorny vines.</li>
+            <li><b>Tick prevention:</b> Apply EPA-registered insect repellent and perform tick checks after walking in tall grass or brush.</li>
+            <li><b>Do not touch unknown stinging insects:</b> Report suspected Asian giant hornets or aggressive yellowjacket nests directly through the app without approaching.</li>
+            <li><b>Respect property boundaries:</b> Only survey on public conservation land, state parks, or with explicit landowner permission.</li>
+          </ul>
+          <div style="font-size:14px; color:var(--text-dim);">
+            Questions? Contact the Worcester County Volunteer Stewardship Desk at <a href="mailto:volunteer@ecosnap.org" style="color:var(--green-accent); font-weight:700;">volunteer@ecosnap.org</a> or call <b>(508) 792-7711 ext. 4</b>.
+          </div>
+        </div>
+
+        <!-- COLLAPSIBLE TECHNICAL SPECIFICATIONS -->
+        <details style="background:var(--bg-card); border:1px solid var(--border-card); border-radius:16px; padding:18px 24px; cursor:pointer;">
+          <summary style="font-weight:700; color:var(--text-muted); font-size:15px; user-select:none;">
+            ⚙️ View BioSnap Architecture &amp; Classifier Specifications (Technical Overview)
+          </summary>
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:18px; margin-top:18px;">
+            <div style="background:var(--bg-card-subtle); border:1px solid var(--border-card); border-radius:12px; padding:18px;">
+              <div style="font-weight:800; color:var(--green-accent); font-size:16px; margin-bottom:6px;">✦ BioCLIP 2 TreeOfLife Classifier</div>
+              <p style="font-size:14px; color:var(--text-muted); line-height:1.5;">Open-world taxonomic classification covering 450,000 biological taxa. First-stage identification yields top 5 species matches.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border:1px solid var(--border-card); border-radius:12px; padding:18px;">
+              <div style="font-weight:800; color:var(--green-accent); font-size:16px; margin-bottom:6px;">✦ Closed-Set Lookalike Filter</div>
+              <p style="font-size:14px; color:var(--text-muted); line-height:1.5;">Specialized second-pass CustomLabelsClassifier disambiguates regulated Cerambycidae from native lookalikes.</p>
+            </div>
+            <div style="background:var(--bg-card-subtle); border:1px solid var(--border-card); border-radius:12px; padding:18px;">
+              <div style="font-weight:800; color:var(--green-accent); font-size:16px; margin-bottom:6px;">✦ Local SQLite Data &amp; Privacy</div>
+              <p style="font-size:14px; color:var(--text-muted); line-height:1.5;">All images submitted with user consent are stripped of GPS/EXIF metadata via PIL and saved locally with SHA-256 UUIDs.</p>
+            </div>
+          </div>
+        </details>
       </div>
 
     </section>
@@ -2350,7 +2701,8 @@
 
     // 1. Tab Switching
     function switchActiveTab(tabId) {
-      const tabs = ['about', 'invasive', 'neighbor', 'tech'];
+      if (tabId === 'tech') tabId = 'announcements';
+      const tabs = ['about', 'invasive', 'neighbor', 'announcements'];
       tabs.forEach(t => {
         const btn = document.getElementById('btnTab' + t.charAt(0).toUpperCase() + t.slice(1));
         const pane = document.getElementById('tabContent' + t.charAt(0).toUpperCase() + t.slice(1));
@@ -2365,6 +2717,62 @@
         renderNeighborFeed();
         renderRadarPins();
       }
+    }
+
+    // 1b. Volunteer & Announcement Actions
+    function scrollToVolunteerForm() {
+      const el = document.getElementById('volunteerSignupAnchor');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      const nameInp = document.getElementById('volFullName');
+      if (nameInp) nameInp.focus();
+    }
+
+    function selectVolunteerRole(roleName) {
+      const sel = document.getElementById('volInterest');
+      if (sel) {
+        for (let i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].value === roleName || sel.options[i].text.includes(roleName.split(' ')[0])) {
+            sel.selectedIndex = i;
+            break;
+          }
+        }
+      }
+      scrollToVolunteerForm();
+    }
+
+    function submitVolunteerRegistration() {
+      const name = document.getElementById('volFullName')?.value.trim();
+      const email = document.getElementById('volEmail')?.value.trim();
+      const town = document.getElementById('volTown')?.value.trim() || 'Local';
+      const role = document.getElementById('volInterest')?.value || 'Volunteer Steward';
+
+      if (!name || !email) {
+        alert('Please provide your name and email address.');
+        return;
+      }
+
+      const townCode = town.replace(/[^a-zA-Z]/g, '').slice(0, 3).toUpperCase() || 'MA';
+      const volId = 'VOL-2026-' + townCode + '-' + Math.floor(1000 + Math.random() * 9000);
+
+      const nameEl = document.getElementById('receiptVolName');
+      const idEl = document.getElementById('receiptVolId');
+      const roleEl = document.getElementById('receiptVolRole');
+      const receiptBox = document.getElementById('volunteerReceiptBox');
+
+      if (nameEl) nameEl.textContent = name;
+      if (idEl) idEl.textContent = volId;
+      if (roleEl) roleEl.textContent = role;
+
+      if (receiptBox) {
+        receiptBox.style.display = 'block';
+        receiptBox.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      showNeighborToast('✓ Volunteer registration confirmed! Welcome, ' + name.split(' ')[0] + '!');
+    }
+
+    function showGuideToast() {
+      showNeighborToast('📋 Field Guide: Scrape grey egg masses into rubbing alcohol or crush thoroughly.');
     }
 
     // 2. Camera Stream Handlers
