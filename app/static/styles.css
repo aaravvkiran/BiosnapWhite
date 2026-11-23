@@ -924,6 +924,35 @@ html, body {
   line-height: 1.55;
 }
 
+.team-roles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 12px;
+}
+
+.role-item {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.role-name {
+  font-weight: 800;
+  color: var(--text-white);
+  margin-right: 4px;
+}
+
+.role-desc {
+  color: var(--text-muted);
+}
+
 /* RESPONSIVE */
 @media (max-width: 960px) {
   html, body {

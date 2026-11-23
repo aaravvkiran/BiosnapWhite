@@ -1081,7 +1081,7 @@
 
     .team-avatar-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 22px;
       margin-top: 24px;
       width: 100%;
@@ -1176,6 +1176,35 @@
       color: var(--text-muted);
       line-height: 1.6;
       margin: 0;
+    }
+
+    .team-roles-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      text-align: left;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: 12px;
+    }
+
+    .role-item {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    .role-name {
+      font-weight: 800;
+      color: var(--text-white);
+      margin-right: 4px;
+    }
+
+    .role-desc {
+      color: var(--text-muted);
     }
 
     /* INVASIVE SPECIES TAB STYLES */
@@ -2235,46 +2264,94 @@
           </div>
 
           <div class="team-avatar-grid">
-            <!-- Student Avatar 1 -->
+            <!-- Student Avatar 1: Aaravv -->
             <div class="team-avatar-card">
               <div class="avatar-halo-wrapper">
-                <img src="/static/avatars/avatar_boy1.png" alt="Student Innovator - AI & Computer Vision Lead" class="avatar-img-circle" onerror="this.onerror=null; this.src='static/avatars/avatar_boy1.png';">
-                <div class="avatar-badge-status" title="AI & Deep Learning">🤖</div>
+                <img src="/static/avatars/avatar_boy1.png" alt="Aaravv - Mission Strategist & Project Lead" class="avatar-img-circle" onerror="this.onerror=null; this.src='static/avatars/avatar_boy1.png';">
+                <div class="avatar-badge-status" title="Mission Strategist">🎯</div>
               </div>
-              <h3 class="avatar-member-title">Student Innovator</h3>
-              <div class="avatar-role-subtitle">AI & Computer Vision Lead</div>
-              <div class="avatar-tag-pill">🌱 BioCLIP & ML Pipeline</div>
-              <p class="avatar-bio-desc">
-                Spearheaded the integration of open-ended BioCLIP 2 taxonomy matching and customized classifier rankings for rapid pest detection in the wild.
-              </p>
+              <h3 class="avatar-member-title">Aaravv</h3>
+              <div class="avatar-role-subtitle">Team Member 1 – Mission Strategist &amp; Project Lead</div>
+              <div class="avatar-tag-pill">🎯 Project Lead &amp; Strategy</div>
+              
+              <div class="team-roles-list">
+                <div class="role-item">
+                  <span class="role-name">🔬 Researcher:</span>
+                  <span class="role-desc">Investigates biodiversity challenges and gathers reliable information.</span>
+                </div>
+                <div class="role-item">
+                  <span class="role-name">💬 Communicator:</span>
+                  <span class="role-desc">Shares ideas clearly and connects with experts and the community.</span>
+                </div>
+                <div class="role-item">
+                  <span class="role-name">📋 Project Manager:</span>
+                  <span class="role-desc">Organizes tasks, tracks progress, and keeps the team on schedule.</span>
+                </div>
+                <div class="role-item">
+                  <span class="role-name">🧭 Mission Strategist:</span>
+                  <span class="role-desc">Guides the team’s vision and ensures the project stays focused on its mission.</span>
+                </div>
+              </div>
             </div>
 
-            <!-- Student Avatar 2 -->
+            <!-- Student Avatar 2: Pradyun -->
             <div class="team-avatar-card">
               <div class="avatar-halo-wrapper">
-                <img src="/static/avatars/avatar_boy2.png" alt="Student Innovator - Systems & Architecture Lead" class="avatar-img-circle" onerror="this.onerror=null; this.src='static/avatars/avatar_boy2.png';">
-                <div class="avatar-badge-status" title="MIT Beaver Works Scholar">⚡</div>
+                <img src="/static/avatars/avatar_boy2.png" alt="Pradyun - Innovation Builder" class="avatar-img-circle" onerror="this.onerror=null; this.src='static/avatars/avatar_boy2.png';">
+                <div class="avatar-badge-status" title="Innovation Builder">⚡</div>
               </div>
-              <h3 class="avatar-member-title">Student Innovator</h3>
-              <div class="avatar-role-subtitle">Systems & Architecture Lead</div>
-              <div class="avatar-tag-pill">🏛️ MIT Beaver Works Scholar</div>
-              <p class="avatar-bio-desc">
-                Engineered the responsive two-panel command center, real-time community radar map, and secure municipal submission reporting system.
-              </p>
+              <h3 class="avatar-member-title">Pradyun</h3>
+              <div class="avatar-role-subtitle">Team Member 2 – Innovation Builder</div>
+              <div class="avatar-tag-pill">🛠️ Prototype &amp; Builder</div>
+              
+              <div class="team-roles-list">
+                <div class="role-item">
+                  <span class="role-name">🔬 Researcher:</span>
+                  <span class="role-desc">Explores the problem, studies existing solutions, and identifies opportunities.</span>
+                </div>
+                <div class="role-item">
+                  <span class="role-name">💬 Communicator:</span>
+                  <span class="role-desc">Presents the team's ideas and explains the proposed solution.</span>
+                </div>
+                <div class="role-item">
+                  <span class="role-name">📋 Project Manager:</span>
+                  <span class="role-desc">Coordinates activities and ensures milestones are completed.</span>
+                </div>
+                <div class="role-item">
+                  <span class="role-name">🛠️ Builder:</span>
+                  <span class="role-desc">Turns ideas into reality by designing, assembling, and testing the prototype.</span>
+                </div>
+              </div>
             </div>
 
-            <!-- Student Avatar 3 -->
+            <!-- Student Avatar 3: Team Member 3 -->
             <div class="team-avatar-card">
               <div class="avatar-halo-wrapper">
-                <img src="/static/avatars/avatar_boy3.png" alt="Student Innovator - Field Ecology & Outreach Lead" class="avatar-img-circle" onerror="this.onerror=null; this.src='static/avatars/avatar_boy3.png';">
-                <div class="avatar-badge-status" title="Ecology & Conservation">🛡️</div>
+                <img src="/static/avatars/avatar_boy3.png" alt="Team Member 3 - Creative Designer & Core Value Champion" class="avatar-img-circle" onerror="this.onerror=null; this.src='static/avatars/avatar_boy3.png';">
+                <div class="avatar-badge-status" title="Core Value Champion">🌟</div>
               </div>
-              <h3 class="avatar-member-title">Student Innovator</h3>
-              <div class="avatar-role-subtitle">Field Ecology & Outreach Lead</div>
-              <div class="avatar-tag-pill">🗺️ Regional Sighting Watch</div>
-              <p class="avatar-bio-desc">
-                Curated the 31-species Shrewsbury & Massachusetts invasive species catalog, verified safe next-step protocols, and community awareness drives.
-              </p>
+              <h3 class="avatar-member-title">Team Member 3</h3>
+              <div class="avatar-role-subtitle">Creative Designer &amp; Core Value Champion</div>
+              <div class="avatar-tag-pill">🎨 Design &amp; Core Values</div>
+              
+              <div class="team-roles-list">
+                <div class="role-item">
+                  <span class="role-name">🔬 Researcher:</span>
+                  <span class="role-desc">Discovers important facts and explores creative approaches to the problem.</span>
+                </div>
+                <div class="role-item">
+                  <span class="role-name">💬 Communicator:</span>
+                  <span class="role-desc">Expresses the team's vision through discussions, visuals, and presentations.</span>
+                </div>
+                <div class="role-item">
+                  <span class="role-name">🎨 Creative Designer:</span>
+                  <span class="role-desc">Transforms ideas into engaging designs and innovative solutions.</span>
+                </div>
+                <div class="role-item">
+                  <span class="role-name">🌟 Core Value Champion:</span>
+                  <span class="role-desc">Promotes teamwork, inclusion, discovery, innovation, and gracious professionalism.</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
