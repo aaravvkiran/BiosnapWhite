@@ -47,7 +47,22 @@ def init_db() -> None:
         )""")
 
 
+def init_avatars() -> None:
+    try:
+        import base64
+        from app.avatars_base64 import AVATARS
+        avatars_dir = BASE / "app" / "static" / "avatars"
+        avatars_dir.mkdir(parents=True, exist_ok=True)
+        for filename, b64_str in AVATARS.items():
+            filepath = avatars_dir / filename
+            if not filepath.exists() or filepath.stat().st_size == 0:
+                filepath.write_bytes(base64.b64decode(b64_str))
+    except Exception as exc:
+        logger.warning(f"Could not initialize avatars: {exc}")
+
+
 init_db()
+init_avatars()
 
 
 # Candidate names for a second-stage comparison. These are lookalikes, NOT
