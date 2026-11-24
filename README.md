@@ -2,7 +2,7 @@
 title: BioSnap
 emoji: 🌿
 colorFrom: green
-colorTo: emerald
+colorTo: green
 sdk: docker
 app_port: 8000
 ---
