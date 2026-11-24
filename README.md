@@ -1,3 +1,12 @@
+---
+title: BioSnap
+emoji: 🌿
+colorFrom: green
+colorTo: emerald
+sdk: docker
+app_port: 8000
+---
+
 # Shrewsbury Species Spotter — FastAPI + BioCLIP 2
 
 A **teaching/MVP** mobile-friendly website that identifies biological organisms with BioCLIP 2, matches the result against a 31-item Shrewsbury/Worcester/Massachusetts species catalog, suggests safe next steps, and optionally stores **unverified** reports in SQLite. It **does not** contact municipal authorities.
